@@ -1,9 +1,11 @@
 .search {
     min-height: 92px;
+    padding-inline: 10px;
 }
 
 .search .filter-input {
     font-family: montserrat, serif;
+    color: var(--clr6);
     font-size: 1em;
     padding: 0.2em;
     margin-block: 2.5em;

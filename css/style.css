@@ -8,6 +8,7 @@
 
 @import "components/header.css";
 @import "components/search.css";
+@import "components/grid.css";
 @import "components/footer.css";
 
 @import "mq/mq.css";

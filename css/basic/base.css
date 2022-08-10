@@ -10,7 +10,8 @@ html {
 
 body {
     margin: 0;
-    /* font-size: 0.875rem; */
+    min-height: 100vh;
+    font-size: 1.125rem;
 }
 
 img {

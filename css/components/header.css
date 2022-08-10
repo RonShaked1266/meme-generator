@@ -10,7 +10,7 @@
     width: 100px;
     height: 66px;
     font-family: montserrat, serif;
-    font-size: 1.2rem;
+    font-size: 1.2em;
     color: var(--clr3);
     display: flex;
     justify-content: center;
@@ -27,4 +27,5 @@
     color: var(--clr3);
     /* margin-inline-start: 10px; */
     font-size: 2.5em;
+    padding-inline-start: 10px;
 }
