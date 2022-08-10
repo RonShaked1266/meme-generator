@@ -1,10 +1,20 @@
 @font-face {
-    font-family: lato;
-    src: url(/fonts/Lato/Lato-Regular.ttf);
+    font-family: montserrat;
+    src: url(/fonts/Montserrat-Regular.ttf);
 }
 
 @font-face {
-    font-family: eurofurence;
-    src: url(/fonts/eurofurence-cufonfonts-webfont/eurof55.woff);
+    font-family: montserrat-bold;
+    src: url(/fonts/Montserrat-Bold.ttf);
+}
+
+@font-face {
+    font-family: eurof55;
+    src: url(/fonts/eurof55.ttf);
+}
+
+@font-face {
+    font-family: eurof75;
+    src: url(/fonts/eurof75.ttf);
 }
 

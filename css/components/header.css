@@ -1,0 +1,30 @@
+.main-header {
+    min-height: 66px;
+}
+
+.main-header-container {
+    background-color: var(--clr1);
+}
+
+.main-header .main-nav a {
+    width: 100px;
+    height: 66px;
+    font-family: montserrat, serif;
+    font-size: 1.2rem;
+    color: var(--clr3);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.main-header .main-nav a:hover {
+    color: var(--clr4);
+    border-bottom: 3px solid var(--clr4);
+}
+
+.main-header .logo {
+    font-family: eurof55;
+    color: var(--clr3);
+    margin-inline-start: 10px;
+    font-size: 2.5em;
+}

@@ -1,2 +1,6 @@
-
+.main-layout>*:not(.full) {
+    max-width: var(--large);
+    margin: 0 auto;
+    box-sizing: content-box;
+}
 
