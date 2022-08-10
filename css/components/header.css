@@ -25,6 +25,6 @@
 .main-header .logo {
     font-family: eurof55;
     color: var(--clr3);
-    margin-inline-start: 10px;
+    /* margin-inline-start: 10px; */
     font-size: 2.5em;
 }
