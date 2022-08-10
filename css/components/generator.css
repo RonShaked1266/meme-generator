@@ -6,6 +6,7 @@
 }
 
 canvas {
+    display: block;
     margin-inline-start: 10px;
     margin-inline-end: 60px;
     background-color: #fff;

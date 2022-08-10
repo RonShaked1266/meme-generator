@@ -9,8 +9,8 @@
     <title>Meme</title>
 </head>
 
-<body>
-    <section class="gallery main-layout" hidden>
+<body onload="init()">
+    <section class="gallery main-layout">
         <header class="main-header-container full main-layout">
             <div class="main-header flex space-between align-center">
                 <div class="logo">memegen</div>
@@ -33,24 +33,24 @@
 
         <div class="grid-container full main-layout">
             <div class="grid">
-                <img class="img" src="img/1.jpg" alt="">
-                <img class="img" src="img/2.jpg" alt="">
-                <img class="img" src="img/3.jpg" alt="">
-                <img class="img" src="img/4.jpg" alt="">
-                <img class="img" src="img/5.jpg" alt="">
-                <img class="img" src="img/6.jpg" alt="">
-                <img class="img" src="img/7.jpg" alt="">
-                <img class="img" src="img/8.jpg" alt="">
-                <img class="img" src="img/9.jpg" alt="">
-                <img class="img" src="img/10.jpg" alt="">
-                <img class="img" src="img/11.jpg" alt="">
-                <img class="img" src="img/12.jpg" alt="">
-                <img class="img" src="img/13.jpg" alt="">
-                <img class="img" src="img/14.jpg" alt="">
-                <img class="img" src="img/15.jpg" alt="">
-                <img class="img" src="img/16.jpg" alt="">
-                <img class="img" src="img/17.jpg" alt="">
-                <img class="img" src="img/18.jpg" alt="">
+                <a onclick="onUpdateCanvas()"><img class="img" src="img/1.jpg"></a>
+                <img class="img" src="img/2.jpg">
+                <img class="img" src="img/3.jpg">
+                <img class="img" src="img/4.jpg">
+                <img class="img" src="img/5.jpg">
+                <img class="img" src="img/6.jpg">
+                <img class="img" src="img/7.jpg">
+                <img class="img" src="img/8.jpg">
+                <img class="img" src="img/9.jpg">
+                <img class="img" src="img/10.jpg">
+                <img class="img" src="img/11.jpg">
+                <img class="img" src="img/12.jpg">
+                <img class="img" src="img/13.jpg">
+                <img class="img" src="img/14.jpg">
+                <img class="img" src="img/15.jpg">
+                <img class="img" src="img/16.jpg">
+                <img class="img" src="img/17.jpg">
+                <img class="img" src="img/18.jpg">
             </div>
         </div>
 
@@ -78,10 +78,15 @@
 
         <div class="generator-container full main-layout">
             <div class="main-content flex">
-                <div class="canvas-container flex">
+                <div class="canvas-container">
                     <canvas id="my-canvas" height="550" width="550"></canvas>
                 </div>
-    
+                
+                <!-- <div class="img-container"></div> -->
+                <img hidden>
+
+                <!-- <img class="img1" src="img/1.jpg" hidden> -->
+
                 <div class="generator">
                     <input type="text" placeholder=""><br><br>
                     <button class="up-down"><img src="/icons/up-down.png"></button>
@@ -106,6 +111,11 @@
             <small>All Rights Reserved 2022</small>
         </footer>
     </section>
+
+    <script src="js/services/util.service.js"></script>
+    <script src="js/services/storage.service.js"></script>
+    <script src="js/services/meme.service.js"></script>
+    <script src="js/meme.controller.js"></script>
 </body>
 
 </html>
