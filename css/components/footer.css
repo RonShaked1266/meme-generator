@@ -1,0 +1,17 @@
+.main-footer {
+    min-height: 207px;
+    background-color: var(--clr1);
+    text-align: center;
+}
+
+.main-footer .logo {
+    font-family: eurof55;
+    color: var(--clr3);
+    font-size: 2.4em;
+    padding-top: 70px;
+    padding-bottom: 16px;
+}
+
+.main-footer small {
+    color: var(--clr3);
+}
