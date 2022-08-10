@@ -1,0 +1,28 @@
+.generator-container {
+    background-color: var(--clr2);
+    min-height: 75vh;
+    /* min-height: 600px; */
+    padding-block: 30px;
+}
+
+canvas {
+    margin-inline-start: 10px;
+    margin-inline-end: 60px;
+    background-color: #fff;
+}
+
+.generator {
+     
+}
+
+.generator input {
+    font-family: montserrat, serif;
+    color: var(--clr6);
+    font-size: 1em;
+    padding: 0.2em;
+    
+}
+
+.generator .share {
+  background-color: var(--clr1);
+}

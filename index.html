@@ -10,9 +10,7 @@
 </head>
 
 <body>
-
-    <section class="gallery main-layout">
-        
+    <section class="gallery main-layout" hidden>
         <header class="main-header-container full main-layout">
             <div class="main-header flex space-between align-center">
                 <div class="logo">memegen</div>
@@ -33,35 +31,81 @@
                 placeholder="Search...">
         </div>
 
-        <div class="grid">
-            <img class="img" src="img/1.jpg" alt="">
-            <img class="img" src="img/2.jpg" alt="">
-            <img class="img" src="img/3.jpg" alt="">
-            <img class="img" src="img/4.jpg" alt="">
-            <img class="img" src="img/5.jpg" alt="">
-            <img class="img" src="img/6.jpg" alt="">
-            <img class="img" src="img/7.jpg" alt="">
-            <img class="img" src="img/8.jpg" alt="">
-            <img class="img" src="img/9.jpg" alt="">
-            <img class="img" src="img/10.jpg" alt="">
-            <img class="img" src="img/11.jpg" alt="">
-            <img class="img" src="img/12.jpg" alt="">
-            <img class="img" src="img/13.jpg" alt="">
-            <img class="img" src="img/14.jpg" alt="">
-            <img class="img" src="img/15.jpg" alt="">
-            <img class="img" src="img/16.jpg" alt="">
-            <img class="img" src="img/17.jpg" alt="">
-            <img class="img" src="img/18.jpg" alt="">
+        <div class="grid-container full main-layout">
+            <div class="grid">
+                <img class="img" src="img/1.jpg" alt="">
+                <img class="img" src="img/2.jpg" alt="">
+                <img class="img" src="img/3.jpg" alt="">
+                <img class="img" src="img/4.jpg" alt="">
+                <img class="img" src="img/5.jpg" alt="">
+                <img class="img" src="img/6.jpg" alt="">
+                <img class="img" src="img/7.jpg" alt="">
+                <img class="img" src="img/8.jpg" alt="">
+                <img class="img" src="img/9.jpg" alt="">
+                <img class="img" src="img/10.jpg" alt="">
+                <img class="img" src="img/11.jpg" alt="">
+                <img class="img" src="img/12.jpg" alt="">
+                <img class="img" src="img/13.jpg" alt="">
+                <img class="img" src="img/14.jpg" alt="">
+                <img class="img" src="img/15.jpg" alt="">
+                <img class="img" src="img/16.jpg" alt="">
+                <img class="img" src="img/17.jpg" alt="">
+                <img class="img" src="img/18.jpg" alt="">
+            </div>
         </div>
 
         <footer class="main-footer full main-layout">
             <div class="logo">memegen</div>
             <small>All Rights Reserved 2022</small>
         </footer>
-
     </section>
 
-    <section class="editor"></section>
+    <section class="editor main-layout">
+        <header class="main-header-container full main-layout">
+            <div class="main-header flex space-between align-center">
+                <div class="logo">memegen</div>
+                <nav class="main-nav">
+                    <ul class="main-nav-list flex clean-list">
+                        <li><a href="#" onclick="toggleMenu()">Gallery</a></li>
+                        <li><a href="#" onclick="toggleMenu()">Memes</a></li>
+                        <li><a href="#" onclick="toggleMenu()">About</a></li>
+                    </ul>
+                </nav>
+
+                <!-- <button class="toggle-menu" onclick="toggleMenu()">☰</button> -->
+            </div>
+        </header>
+
+        <div class="generator-container full main-layout">
+            <div class="main-content flex">
+                <div class="canvas-container flex">
+                    <canvas id="my-canvas" height="550" width="550"></canvas>
+                </div>
+    
+                <div class="generator">
+                    <input type="text" placeholder=""><br><br>
+                    <button class="up-down"><img src="/icons/up-down.png"></button>
+                    <button class="add"><img src="/icons/add.png"></button>
+                    <button class="trash"><img src="/icons/trash.png"></button><br><br>
+                    <button class="increas-font"><img src="/icons/increase-font.png"></button>
+                    <button class="decrease-font"><img src="/icons/decrease-font.png"></button>
+                    <button class="align-to-right"><img src="/icons/align-to-right.png"></button>
+                    <button class="align-to-left"><img src="/icons/align-to-left.png"></button>
+                    <button class="center-text-alignment"><img src="/icons/center-text-alignment.png"></button><br><br>
+                    <select></select>
+                    <button class="text-stroke"><img src="/icons/text-stroke.png"></button>
+                    <button class="paint-board"><img src="/icons/paint-board.png"></button>
+                    <section></section><br>
+                    <button class="share">Share</button>
+                </div>
+            </div>
+        </div>
+
+        <footer class="main-footer full main-layout">
+            <div class="logo">memegen</div>
+            <small>All Rights Reserved 2022</small>
+        </footer>
+    </section>
 </body>
 
 </html>

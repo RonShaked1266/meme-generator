@@ -7,8 +7,9 @@
 @import "basic/layout.css";
 
 @import "components/header.css";
+@import "components/generator.css";
 @import "components/search.css";
-@import "components/grid.css";
+@import "components/main-grid.css";
 @import "components/footer.css";
 
 @import "mq/mq.css";
