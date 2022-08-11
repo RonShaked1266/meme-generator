@@ -3,11 +3,10 @@
 var gElCanvas
 var gCtx
 
-function init() {
+function onInit() {
     renderGallery()
     gElCanvas = document.querySelector('#my-canvas')
     gCtx = gElCanvas.getContext('2d')
-    
 }
 
 function renderMeme() {
@@ -24,61 +23,58 @@ function renderMeme() {
     }
 }
 
-function drawText(txtObj, ev, x, y) {
-    const fillStyle = document.querySelector('.fill-style').value
-    const strokeStyle = document.querySelector('.stroke-style').value
-    ev.preventDefault()
-    console.log(txtObj)
-    const elTxt = document.querySelector('.input-up').value
-    console.log(elTxt)
-    gCtx.beginPath()
-    gCtx.textBaseline = 'middle';
-    gCtx.textAlign = 'center';
-    gCtx.lineWidth = 1;
-    gCtx.font = '50px david';
-    gCtx.fillStyle = fillStyle;
-    gCtx.strokeStyle = strokeStyle;
-    gCtx.fillText(elTxt, x, y);
-    gCtx.strokeText(elTxt, x, y);
-    gCtx.closePath()
-    _saveImgsToStorage()
-}
-function drawTextUp(txtObj, ev) {
-    const fillStyle = document.querySelector('.fill-style').value
-    const strokeStyle = document.querySelector('.stroke-style').value
-    ev.preventDefault()
-    console.log(txtObj)
-    const elTxt = document.querySelector('.input-up').value
-    console.log(elTxt)
-    gCtx.beginPath()
-    gCtx.textBaseline = 'middle';
-    gCtx.textAlign = 'center';
-    gCtx.lineWidth = 1;
-    gCtx.font = '50px david';
-    gCtx.fillStyle = fillStyle;
-    gCtx.strokeStyle = strokeStyle;
-    gCtx.fillText(elTxt, gElCanvas.width / 2, gElCanvas.height / 11);
-    gCtx.strokeText(elTxt, gElCanvas.width / 2, gElCanvas.height / 11);
-    gCtx.closePath()
-    _saveImgsToStorage()
-}
-function drawTextDown(txtObj, ev) {
 
+function draw(txtObj, ev) {
     ev.preventDefault()
-    console.log(txtObj)
-    const elTxt = document.querySelector('.input-down').value
+    const meme = getMeme()
+    switch (meme.selectedLineIdx) {
+        case 0:
+            drawText(txtObj, gElCanvas.width / 2, gElCanvas.height / 11)
+            break;
+        case 1:
+            drawText(txtObj, gElCanvas.width / 2, gElCanvas.height / 1.1);
+            break;
+        }
+        const elTxt = document.querySelector('[name=txt]')
+        elTxt.value = ''
+}
+
+// function txtDirection(ev) {
+//     console.log('center')
+//     const meme = getMeme()
+//     switch (meme.align) {
+//         case 'center':
+//             gCtx.textAlign = 'center'
+//             break;
+//             case 'right':
+//             gCtx.textAlign = 'right'
+//             break;
+//             case 'left':
+//             gCtx.textAlign = 'left'
+//             break;
+//     }
+// }
+
+function drawText(txt, x, y) {
+    const fillStyle = document.querySelector('.fill-style').value
+    const strokeStyle = document.querySelector('.stroke-style').value
+    console.log(txt)
+    let elTxt = document.querySelector('.input-txt').value
     console.log(elTxt)
     gCtx.beginPath()
-    gCtx.textBaseline = 'middle';
-    gCtx.textAlign = 'center';
-    gCtx.lineWidth = 1;
-    gCtx.font = '50px david';
-    gCtx.fillStyle = 'yellow';
-    gCtx.strokeStyle = 'green';
-    gCtx.fillText(elTxt, gElCanvas.width / 2, gElCanvas.height / 1.1);
-    gCtx.strokeText(elTxt, gElCanvas.width / 2, gElCanvas.height / 1.1);
+    gCtx.textBaseline = 'middle'
+    gCtx.textAlign = 'center'
+    gCtx.lineWidth = 1
+    gCtx.font = '70px eurof75'
+    gCtx.fillStyle = fillStyle
+    gCtx.strokeStyle = strokeStyle
+    gCtx.fillText(elTxt, x, y)
+    gCtx.strokeText(elTxt, x, y)
     gCtx.closePath()
+
+
 }
+   
 
 function clearCanvas() {
     gCtx.clearRect(0, 0, gElCanvas.width, gElCanvas.height);
@@ -89,6 +85,47 @@ function clearCanvas() {
 // function increaseFontSizeBy10px() {
 //     
 // }
+
+function uploadImg() {
+    const imgDataUrl = gElCanvas.toDataURL("image/jpeg");
+
+    // A function to be called if request succeeds
+    function onSuccess(uploadedImgUrl) {
+        const encodedUploadedImgUrl = encodeURIComponent(uploadedImgUrl)
+        document.querySelector('.user-msg').innerText = `Your photo is available here: ${uploadedImgUrl}`
+
+        document.querySelector('.share-container').innerHTML = `
+        <a class="btn" href="https://www.facebook.com/sharer/sharer.php?u=${encodedUploadedImgUrl}&t=${encodedUploadedImgUrl}" title="Share on Facebook" target="_blank" onclick="window.open('https://www.facebook.com/sharer/sharer.php?u=${uploadedImgUrl}&t=${uploadedImgUrl}'); return false;">
+           Share   
+        </a>`
+    }
+    doUploadImg(imgDataUrl, onSuccess);
+}
+
+function doUploadImg(imgDataUrl, onSuccess) {
+
+    const formData = new FormData();
+    formData.append('img', imgDataUrl)
+
+    fetch('//ca-upload.com/here/upload.php', {
+        method: 'POST',
+        body: formData
+    })
+        .then(res => res.text())
+        .then((url) => {
+            console.log('Got back live url:', url);
+            onSuccess(url)
+        })
+        .catch((err) => {
+            console.error(err)
+        })
+}
+
+function downloadCanvas(elLink) {
+    const data = gElCanvas.toDataURL();
+    elLink.href = data;
+    elLink.download = 'my-canvas';
+}
 
 
 

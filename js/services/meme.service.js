@@ -43,6 +43,13 @@ function setLineTxt(txtObj) {
     return gTxt 
 }
 
+function toggleUpDown() {
+    console.log(gMeme.selectedLineIdx)
+    if (gMeme.selectedLineIdx === 0) gMeme.selectedLineIdx = 1
+    else gMeme.selectedLineIdx = 0
+    console.log(gMeme.selectedLineIdx)
+}
+
 var gMeme = {
     selectedImgId: 0,
     selectedLineIdx: 0,
@@ -87,3 +94,5 @@ function getImgById(imgId) {
 function _saveImgsToStorage() {
     saveToStorage(STORAGE_KEY, gImgs)
 }
+
+

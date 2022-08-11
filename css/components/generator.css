@@ -27,23 +27,37 @@ canvas {
 }
 
 
-.generator .input-up {
+.generator .input-txt {
     font-family: montserrat, serif;
     color: var(--clr6);
     font-size: 1em;
-    padding: 0.2em;
+    padding: 0.4em;
+    border-radius: 4px;
 }
 
-/* .generator .input-down {
-    display: none;
-    font-family: montserrat, serif;
-    color: var(--clr6);
-    font-size: 1em;
-    padding: 0.2em;
-} */
 
 .generator .share {
     background-color: var(--clr1);
+    font-family: montserrat, serif;
+    font-size: 1em;
+    width: 65px;
+    height: 45px;
+    margin: 5px;
+    padding: 5px;
+    
+}
+
+.generator .download {
+    background-color: var(--clr1);
+    width: 65px;
+    height: 55px;
+    border: none;
+    border-radius: 10px;
+    color: var(--clr4);
+    font-family: montserrat, serif;
+    font-size: 1em;
+    margin: 5px;
+    padding: 10px;
 }
 
 .fill-style {

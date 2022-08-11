@@ -9,7 +9,7 @@
     <title>Meme</title>
 </head>
 
-<body onload="init()">
+<body onload="onInit()">
     <header class="main-header-container full main-layout">
         <div class="main-header flex space-between align-center">
             <div class="logo">memegen</div>
@@ -25,7 +25,7 @@
     <section class="gallery main-layout">
         <div class="search">
             <input data-trans="search-placeholder" onchange="" type="search" class="search-input"
-            placeholder="Search...">
+                placeholder="Search...">
             <select class="select" onchange="onSetFilterBy(this.value)">
                 <option value="all">All</option>
                 <option value="funny">Funny</option>
@@ -35,7 +35,7 @@
         </div>
         <div class="grid-container full main-layout">
             <div class="grid">
-        </div>
+            </div>
     </section>
 
     <section class="editor main-layout">
@@ -43,34 +43,36 @@
             <div class="main-content flex">
 
                 <!-- <div class="canvas-container"> -->
-                    <canvas id="my-canvas" height="550" width="550"></canvas>
+                <canvas id="my-canvas" height="550" width="550"></canvas>
                 <!-- </div> -->
                 <img hidden>
 
                 <div class="generator-container flex">
                     <div class="generator">
-                        <input type="text" class="input-up" placeholder="" name="txt"
-                            onchange="drawTextUp({txt: this.value}, event)" onclick="toggleUpDown()"><br><br>
-                        <!-- <input type="text" class="input-down" placeholder="" name="txt"
-                            onchange="drawTextDown({txt: this.value}, event)"> -->
-                        <button class="up-down"><img src="/icons/up-down.png"></button>
+                        <input type="text" class="input-txt" placeholder="" name="txt"
+                            onchange="draw({txt: this.value}, event)"><br><br>
+                        <button class="up-down" onclick="toggleUpDown(this)"><img src="/icons/up-down.png"></button>
                         <button class="add"><img src="/icons/add.png"></button>
                         <button class="trash" onclick="clearCanvas()"><img src="/icons/trash.png"></button><br><br>
                         <button class="increas-font" onclick="increaseFontSizeBy10px()"><img
                                 src="/icons/increase-font.png"></button>
                         <button class="decrease-font"><img src="/icons/decrease-font.png"></button>
-                        <button class="align-to-right" onclick="alignToRight()"><img src="/icons/align-to-right.png"></button>
-                        <button class="align-to-left"><img src="/icons/align-to-left.png"></button>
-                        <button class="center-text-alignment"><img
+                        <button class="align-to-right" onclick="txtDirection('right')"><img
+                                src="/icons/align-to-right.png"></button>
+                        <button class="align-to-left" onclick="txtDirection('left')"><img src="/icons/align-to-left.png"></button>
+                        <button class="center-text-alignment" onclick="txtDirection('center')"><img
                                 src="/icons/center-text-alignment.png"></button><br><br>
                         <select></select>
                         <button class="text-stroke"><img src="/icons/text-stroke.png"></button>
                         <button class="paint-board"><img src="/icons/paint-board.png"></button>
                         <input type="color" class="fill-style" name="fill-style" />
                         <input type="color" class="stroke-style" name="stroke-style" />
-
                         <section></section><br>
-                        <button class="share">Share</button>
+                        <a href="#" onclick="downloadCanvas(this)" download="cool-canvas" class="download">Download</a>
+                        <br><br><button class="share" onclick="uploadImg()">Share</button>
+                        <p class="user-msg"></p>
+                        <div class="share-container"></div>
+
                     </div>
                 </div>
             </div>
