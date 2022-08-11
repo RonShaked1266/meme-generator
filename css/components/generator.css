@@ -41,7 +41,7 @@ canvas {
     font-family: montserrat, serif;
     font-size: 1em;
     width: 65px;
-    height: 45px;
+    height: 42px;
     margin: 5px;
     padding: 5px;
     
@@ -83,4 +83,10 @@ canvas {
     padding: 5px;
 }
 
-
+.generator .select {
+    border-radius: 4px;
+    font-family: montserrat, serif;
+    color: var(--clr6);
+    font-size: 1em;
+    padding: 0.2em;
+}

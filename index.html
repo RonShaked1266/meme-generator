@@ -59,20 +59,26 @@
                         <button class="decrease-font"><img src="/icons/decrease-font.png"></button>
                         <button class="align-to-right" onclick="txtDirection('right')"><img
                                 src="/icons/align-to-right.png"></button>
-                        <button class="align-to-left" onclick="txtDirection('left')"><img src="/icons/align-to-left.png"></button>
+                        <button class="align-to-left" onclick="txtDirection('left')"><img
+                                src="/icons/align-to-left.png"></button>
                         <button class="center-text-alignment" onclick="txtDirection('center')"><img
                                 src="/icons/center-text-alignment.png"></button><br><br>
-                        <select></select>
                         <button class="text-stroke"><img src="/icons/text-stroke.png"></button>
-                        <button class="paint-board"><img src="/icons/paint-board.png"></button>
+                        <select class="select" name="select-font">
+                            <option value="impact">Impact</option>
+                            <option value="montserrat">Montserrat</option>
+                            <option value="eurof75">Eurof75</option>
+                            <option value="david">David</option>
+                            <option value="arial">Arial</option>
+                        </select>
+                        <br><br><button class="paint-board"><img src="/icons/paint-board.png"></button>
                         <input type="color" class="fill-style" name="fill-style" />
                         <input type="color" class="stroke-style" name="stroke-style" />
                         <section></section><br>
                         <a href="#" onclick="downloadCanvas(this)" download="cool-canvas" class="download">Download</a>
-                        <br><br><button class="share" onclick="uploadImg()">Share</button>
+                        <button class="share" onclick="uploadImg()">Share</button>
                         <p class="user-msg"></p>
                         <div class="share-container"></div>
-
                     </div>
                 </div>
             </div>

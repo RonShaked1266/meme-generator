@@ -37,44 +37,46 @@ function draw(txtObj, ev) {
         }
         const elTxt = document.querySelector('[name=txt]')
         elTxt.value = ''
-}
-
-// function txtDirection(ev) {
-//     console.log('center')
-//     const meme = getMeme()
-//     switch (meme.align) {
-//         case 'center':
-//             gCtx.textAlign = 'center'
-//             break;
-//             case 'right':
-//             gCtx.textAlign = 'right'
-//             break;
-//             case 'left':
-//             gCtx.textAlign = 'left'
-//             break;
-//     }
-// }
-
-function drawText(txt, x, y) {
-    const fillStyle = document.querySelector('.fill-style').value
-    const strokeStyle = document.querySelector('.stroke-style').value
-    console.log(txt)
-    let elTxt = document.querySelector('.input-txt').value
-    console.log(elTxt)
-    gCtx.beginPath()
-    gCtx.textBaseline = 'middle'
-    gCtx.textAlign = 'center'
-    gCtx.lineWidth = 1
-    gCtx.font = '70px eurof75'
-    gCtx.fillStyle = fillStyle
-    gCtx.strokeStyle = strokeStyle
-    gCtx.fillText(elTxt, x, y)
-    gCtx.strokeText(elTxt, x, y)
+    }
+    // function txtDirection(ev) {
+    //     console.log('center')
+    //     const meme = getMeme()
+    //     switch (meme.align) {
+    //         case 'center':
+    //             gCtx.textAlign = 'center'
+    //             break;
+    //             case 'right':
+    //             gCtx.textAlign = 'right'
+    //             break;
+    //             case 'left':
+    //             gCtx.textAlign = 'left'
+    //             break;
+    //     }
+    // }
+    
+    
+    function drawText(txt, x, y) {
+        const font = document.querySelector('[name=select-font]').value
+        console.log(font)
+        const fillStyle = document.querySelector('.fill-style').value
+        const strokeStyle = document.querySelector('.stroke-style').value
+        console.log(txt)
+        let elTxt = document.querySelector('.input-txt').value
+        console.log(elTxt)
+        gCtx.beginPath()
+        gCtx.textBaseline = 'middle'
+        gCtx.textAlign = 'center'
+        gCtx.lineWidth = 1
+        gCtx.font = font
+        gCtx.fillStyle = fillStyle
+        gCtx.strokeStyle = strokeStyle
+        gCtx.fillText(elTxt, x, y)
+        gCtx.strokeText(elTxt, x, y)
     gCtx.closePath()
-
-
+    
+    
 }
-   
+
 
 function clearCanvas() {
     gCtx.clearRect(0, 0, gElCanvas.width, gElCanvas.height);
