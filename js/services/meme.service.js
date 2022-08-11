@@ -1,9 +1,6 @@
 'use strict'
 
-function getMeme() {
-    return gMeme
-}
-
+var gTxtObj = { txt: ''}
 var gKeywordSearchCountMap = { 'funny': 12, 'cat': 16, 'baby': 2 }
 
 var gImgs = [
@@ -24,17 +21,31 @@ var gImgs = [
     { id: 15, url: 'img/15.jpg', keywords: ['funny', 'cat'] },
     { id: 16, url: 'img/16.jpg', keywords: ['funny', 'cat'] },
     { id: 17, url: 'img/17.jpg', keywords: ['funny', 'cat'] },
-    { id: 18, url: 'img/18.jpg', keywords: ['funny', 'cat'] }
-   
+    { id: 18, url: 'img/18.jpg', keywords: ['funny', 'cat'] },
 ]
-
+console.log(gImgs[15])
+// console.log(gImgs[0].url)
 function getImgById(imgId) {
+    console.log(imgId)
     const img = gImgs.find(img => imgId === img.id)
-    return img
+    console.log(img)
+    // return img
 }
 
+function setImg(imgId) {
+    if (imgId !== undefined) gMeme.selectedImgId = imgId
+    console.log(gMeme.selectedImgId)  
+}
+
+function setLineTxt(txtObj) {
+    if (txtObj.txt !== undefined) gTxtObj.txt = txtObj.txt
+    return gTxt 
+}
+
+
+
 var gMeme = {
-    selectedImgId: 5,
+    selectedImgId: 0,
     selectedLineIdx: 0,
     lines: [
         {
@@ -44,4 +55,14 @@ var gMeme = {
             color: 'red'
         }
     ]
+}
+
+function getMeme() {
+    return gMeme
+}
+
+function getImg(imgId) {
+    console.log(gImgs[imgId-1]) 
+    console.log(gImgs[imgId-1].url) 
+    return gImgs[imgId-1]
 }

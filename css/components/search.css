@@ -3,7 +3,7 @@
     padding-inline: 10px;
 }
 
-.search .filter-input {
+.search .search-input {
     font-family: montserrat, serif;
     color: var(--clr6);
     font-size: 1em;

@@ -27,14 +27,14 @@
         </header>
 
         <div class="search">
-            <input data-trans="search-placeholder" onchange="" type="search" class="filter-input"
+            <input data-trans="search-placeholder" onchange="" type="search" class="search-input"
                 placeholder="Search...">
         </div>
 
         <div class="grid-container full main-layout">
             <div class="grid">
-                <a onclick="onUpdateCanvas()"><img class="img" src="img/1.jpg"></a>
-                <img class="img" src="img/2.jpg">
+                <a onclick="onImgSelect(this)"><img class="img" src="img/1.jpg"></a>
+                <img onclick="onImgSelect(this)" class="img" src="img/2.jpg">
                 <img class="img" src="img/3.jpg">
                 <img class="img" src="img/4.jpg">
                 <img class="img" src="img/5.jpg">
@@ -50,7 +50,7 @@
                 <img class="img" src="img/15.jpg">
                 <img class="img" src="img/16.jpg">
                 <img class="img" src="img/17.jpg">
-                <img class="img" src="img/18.jpg">
+                <img id="18" class="img" src="img/18.jpg" onclick="onImgSelect(this)">
             </div>
         </div>
 
@@ -88,9 +88,10 @@
                 <!-- <img class="img1" src="img/1.jpg" hidden> -->
 
                 <div class="generator">
-                    <input type="text" placeholder=""><br><br>
+                    <input type="text" class="input-up" placeholder="" name="txt" onchange="drawTextUp({txt: this.value}, event)"><br><br>
+                    <input type="text" class="input-down" placeholder="" name="txt" onchange="drawTextDown({txt: this.value}, event)"><br><br>
                     <button class="up-down"><img src="/icons/up-down.png"></button>
-                    <button class="add"><img src="/icons/add.png"></button>
+                    <button class="add" onclick="clearCanvas()"><img src="/icons/add.png"></button>
                     <button class="trash"><img src="/icons/trash.png"></button><br><br>
                     <button class="increas-font"><img src="/icons/increase-font.png"></button>
                     <button class="decrease-font"><img src="/icons/decrease-font.png"></button>
@@ -100,6 +101,8 @@
                     <select></select>
                     <button class="text-stroke"><img src="/icons/text-stroke.png"></button>
                     <button class="paint-board"><img src="/icons/paint-board.png"></button>
+                    <!-- <input type="color" class="fillStyle" name="fillStyle"/> -->
+                    
                     <section></section><br>
                     <button class="share">Share</button>
                 </div>
@@ -115,6 +118,7 @@
     <script src="js/services/util.service.js"></script>
     <script src="js/services/storage.service.js"></script>
     <script src="js/services/meme.service.js"></script>
+    <script src="js/gallery.controller.js"></script>
     <script src="js/meme.controller.js"></script>
 </body>
 
