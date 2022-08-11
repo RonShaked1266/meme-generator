@@ -13,9 +13,10 @@ function renderMeme() {
     const meme = getMeme()
     const imgId = meme.selectedImgId
     const imgObj = getImg(imgId)
-    console.log(imgObj)
+    // const imgObj = getImgById(imgId)
+    // console.log(imgObj)
     const img = new Image()
-    console.log(img)
+    // console.log(img)
     img.src = imgObj.url
     img.onload = () => {
         gCtx.drawImage(img, 0, 0, gElCanvas.width, gElCanvas.height)

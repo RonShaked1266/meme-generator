@@ -1,6 +1,20 @@
 .main-layout>*:not(.full) {
-    max-width: var(--large);
+    max-width: var(--small);
     margin: 0 auto;
     box-sizing: content-box;
 }
+
+.editor {
+    display: none;
+}
+
+body.editor-open .editor {
+    display: unset;
+}
+
+body.editor-open .gallery {
+    display: none;
+}
+
+
 

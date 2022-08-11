@@ -1,16 +1,30 @@
-.generator-container {
+.editor-content {
     background-color: var(--clr2);
     min-height: 75vh;
     /* min-height: 600px; */
     padding-block: 30px;
 }
 
-canvas {
-    display: block;
-    margin-inline-start: 10px;
-    margin-inline-end: 60px;
-    background-color: #fff;
+.main-content {
+    flex-direction: column;
 }
+.main-content >* {
+    justify-content: center;
+    align-items: center;
+    
+}
+
+.generator-container {
+    flex-direction: column;
+}
+
+canvas {
+    display: flex;
+    background-color: #fff;
+    margin-inline: 10px;
+    /* margin-inline-end: 100px; */
+}
+
 
 .generator .input-up {
     font-family: montserrat, serif;

@@ -4,19 +4,19 @@
 //     var imgs = getImgs()
 //     var strHTMLs = imgs.map(img =>
 //     `
-//     <a onclick="onImgSelect('${img.id}')">
-//     <img id="${img.id}" class="img" src="${img.url}">
-//     </a>  
+//     <img id="${img.id}" class="img" src="${img.url}" 
+//     onclick="onImgSelect('${img.id}')">
 //     `
 //     )
 //     document.querySelector('.grid').innerHTML = strHTMLs.join('')
+//     document.querySelector('.grid').innerHTML = ...strHTMLs
 // }
 
 function onImgSelect(elImg) {
-    console.log(elImg)
+    document.body.classList.toggle('editor-open')
+    // console.log(elImg)
     const elImgId = elImg.id
-    // console.log(elImg.id)
-    console.log(elImgId)
+    // console.log(elImgId)
     setImg(elImgId)
     // getImgById(elImgId)
     getImg(elImgId)

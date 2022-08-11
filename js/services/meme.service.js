@@ -1,9 +1,12 @@
 'use strict'
 
+const STORAGE_KEY = 'imgDB'
+
+var gImgs
 var gTxtObj = { txt: ''}
 var gKeywordSearchCountMap = { 'funny': 12, 'cat': 16, 'baby': 2 }
 
-var gImgs = [
+gImgs = [
     { id: 1, url: 'img/1.jpg', keywords: ['funny', 'cat'] },
     { id: 2, url: 'img/2.jpg', keywords: ['funny', 'cat'] },
     { id: 3, url: 'img/3.jpg', keywords: ['funny', 'cat'] },
@@ -23,26 +26,17 @@ var gImgs = [
     { id: 17, url: 'img/17.jpg', keywords: ['funny', 'cat'] },
     { id: 18, url: 'img/18.jpg', keywords: ['funny', 'cat'] },
 ]
-console.log(gImgs[15])
-// console.log(gImgs[0].url)
-function getImgById(imgId) {
-    console.log(imgId)
-    const img = gImgs.find(img => imgId === img.id)
-    console.log(img)
-    // return img
-}
+
 
 function setImg(imgId) {
     if (imgId !== undefined) gMeme.selectedImgId = imgId
-    console.log(gMeme.selectedImgId)  
+    // console.log(gMeme.selectedImgId)  
 }
 
 function setLineTxt(txtObj) {
     if (txtObj.txt !== undefined) gTxtObj.txt = txtObj.txt
     return gTxt 
 }
-
-
 
 var gMeme = {
     selectedImgId: 0,
@@ -61,8 +55,19 @@ function getMeme() {
     return gMeme
 }
 
+// temmperry solution:
 function getImg(imgId) {
-    console.log(gImgs[imgId-1]) 
-    console.log(gImgs[imgId-1].url) 
+    // console.log(gImgs[imgId-1]) 
+    // console.log(gImgs[imgId-1].url) 
     return gImgs[imgId-1]
+}
+
+function getImgById(imgId) {
+    // console.log(imgId)
+    const img = gImgs.find(img => imgId === img.id)
+    return img
+}
+
+function _saveImgsToStorage() {
+    saveToStorage(STORAGE_KEY, gImgs)
 }
