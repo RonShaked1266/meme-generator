@@ -1,16 +1,15 @@
-'use strict'
+'use strict' 
 
-// function renderGallery() {
-//     var imgs = getImgs()
-//     var strHTMLs = imgs.map(img =>
-//     `
-//     <img id="${img.id}" class="img" src="${img.url}" 
-//     onclick="onImgSelect('${img.id}')">
-//     `
-//     )
-//     document.querySelector('.grid').innerHTML = strHTMLs.join('')
-//     document.querySelector('.grid').innerHTML = ...strHTMLs
-// }
+function renderGallery() {
+    var imgs = getImgsForDisplay()
+    var strHTMLs = imgs.map(img =>
+    `
+    <img id="${img.id}" class="img" src="${img.url}" 
+    onclick="onImgSelect(this)">
+    `
+    )
+    document.querySelector('.grid').innerHTML = strHTMLs.join('')
+}
 
 function onImgSelect(elImg) {
     document.body.classList.toggle('editor-open')
@@ -21,4 +20,9 @@ function onImgSelect(elImg) {
     // getImgById(elImgId)
     getImg(elImgId)
     renderMeme()
+}
+
+function onSetFilterBy(filterBy) {
+    setFilter(filterBy)
+    renderGallery()
 }

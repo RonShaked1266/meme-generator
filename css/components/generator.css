@@ -16,6 +16,7 @@
 
 .generator-container {
     flex-direction: column;
+    text-align: center;
 }
 
 canvas {
@@ -33,13 +34,39 @@ canvas {
     padding: 0.2em;
 }
 
-.generator .input-down {
+/* .generator .input-down {
+    display: none;
     font-family: montserrat, serif;
     color: var(--clr6);
     font-size: 1em;
     padding: 0.2em;
-}
+} */
 
 .generator .share {
     background-color: var(--clr1);
 }
+
+.fill-style {
+    width: 55px;
+    height: 55px;
+    border: none;
+    border-radius: 10px;
+    background-color: var(--clr3);
+    /* background-image: url("../icons/paint-board.png"); */
+    font-family: montserrat-bold, serif;
+    margin: 5px;
+    padding: 5px;
+}
+.stroke-style {
+    width: 55px;
+    height: 55px;
+    border: none;
+    border-radius: 10px;
+    background-color: var(--clr3);
+    /* background-image: url("../icons/paint-board.png"); */
+    font-family: montserrat-bold, serif;
+    margin: 5px;
+    padding: 5px;
+}
+
+

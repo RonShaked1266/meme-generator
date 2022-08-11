@@ -21,89 +21,62 @@
             <button class="toggle-menu" onclick="toggleMenu()">☰</button>
         </div>
     </header>
-    <section class="gallery main-layout">
 
+    <section class="gallery main-layout">
         <div class="search">
             <input data-trans="search-placeholder" onchange="" type="search" class="search-input"
-                placeholder="Search...">
+            placeholder="Search...">
+            <select class="select" onchange="onSetFilterBy(this.value)">
+                <option value="all">All</option>
+                <option value="funny">Funny</option>
+                <option value="cat">Cat</option>
+                <option value="baby">Baby</option>
+            </select>
         </div>
-
         <div class="grid-container full main-layout">
             <div class="grid">
-                <img id="1" class="img" src="img/1.jpg" onclick="onImgSelect(this)">
-                <img id="2" class="img" src="img/2.jpg" onclick="onImgSelect(this)">
-                <img id="3" class="img" src="img/3.jpg" onclick="onImgSelect(this)">
-                <img id="4" class="img" src="img/4.jpg" onclick="onImgSelect(this)">
-                <img id="5" class="img" src="img/5.jpg" onclick="onImgSelect(this)">
-                <img id="6" class="img" src="img/6.jpg" onclick="onImgSelect(this)">
-                <img id="7" class="img" src="img/7.jpg" onclick="onImgSelect(this)">
-                <img id="8" class="img" src="img/8.jpg" onclick="onImgSelect(this)">
-                <img id="9" class="img" src="img/9.jpg" onclick="onImgSelect(this)">
-                <img id="10" class="img" src="img/10.jpg" onclick="onImgSelect(this)">
-                <img id="11" class="img" src="img/11.jpg" onclick="onImgSelect(this)">
-                <img id="12" class="img" src="img/12.jpg" onclick="onImgSelect(this)">
-                <img id="13" class="img" src="img/13.jpg" onclick="onImgSelect(this)">
-                <img id="14" class="img" src="img/14.jpg" onclick="onImgSelect(this)">
-                <img id="15" class="img" src="img/15.jpg" onclick="onImgSelect(this)">
-                <img id="16" class="img" src="img/16.jpg" onclick="onImgSelect(this)">
-                <img id="17" class="img" src="img/17.jpg" onclick="onImgSelect(this)">
-                <img id="18" class="img" src="img/18.jpg" onclick="onImgSelect(this)">
-            </div>
         </div>
-
-        <!-- <footer class="main-footer full main-layout">
-            <div class="logo">memegen</div>
-            <small>All Rights Reserved 2022</small>
-        </footer> -->
     </section>
 
     <section class="editor main-layout">
-        <!-- <header class="main-header-container full main-layout">
-            <div class="main-header flex space-between align-center">
-                <div class="logo">memegen</div>
-                <ul class="main-nav flex clean-list">
-                    <li><a href="#" onclick="toggleMenu()">Gallery</a></li>
-                    <li><a href="#" onclick="toggleMenu()">Memes</a></li>
-                    <li><a href="#" onclick="toggleMenu()">About</a></li>
-                </ul>
-                <button class="toggle-menu" onclick="toggleMenu()">☰</button>
-            </div>
-        </header> -->
-
         <div class="editor-content full main-layout">
-            <div class="main-content grid2 flex">
+            <div class="main-content flex">
 
-                <canvas id="my-canvas" height="550" width="550"></canvas>
-                
+                <!-- <div class="canvas-container"> -->
+                    <canvas id="my-canvas" height="550" width="550"></canvas>
+                <!-- </div> -->
+                <img hidden>
+
                 <div class="generator-container flex">
                     <div class="generator">
                         <input type="text" class="input-up" placeholder="" name="txt"
-                            onchange="drawTextUp({txt: this.value}, event)"><br><br>
-                        <input type="text" class="input-down" placeholder="" name="txt"
-                            onchange="drawTextDown({txt: this.value}, event)"><br><br>
+                            onchange="drawTextUp({txt: this.value}, event)" onclick="toggleUpDown()"><br><br>
+                        <!-- <input type="text" class="input-down" placeholder="" name="txt"
+                            onchange="drawTextDown({txt: this.value}, event)"> -->
                         <button class="up-down"><img src="/icons/up-down.png"></button>
-                        <button class="add" onclick="clearCanvas()"><img src="/icons/add.png"></button>
-                        <button class="trash"><img src="/icons/trash.png"></button><br><br>
-                        <button class="increas-font"><img src="/icons/increase-font.png"></button>
+                        <button class="add"><img src="/icons/add.png"></button>
+                        <button class="trash" onclick="clearCanvas()"><img src="/icons/trash.png"></button><br><br>
+                        <button class="increas-font" onclick="increaseFontSizeBy10px()"><img
+                                src="/icons/increase-font.png"></button>
                         <button class="decrease-font"><img src="/icons/decrease-font.png"></button>
-                        <button class="align-to-right"><img src="/icons/align-to-right.png"></button>
+                        <button class="align-to-right" onclick="alignToRight()"><img src="/icons/align-to-right.png"></button>
                         <button class="align-to-left"><img src="/icons/align-to-left.png"></button>
                         <button class="center-text-alignment"><img
                                 src="/icons/center-text-alignment.png"></button><br><br>
                         <select></select>
                         <button class="text-stroke"><img src="/icons/text-stroke.png"></button>
                         <button class="paint-board"><img src="/icons/paint-board.png"></button>
-                        <!-- <input type="color" class="fillStyle" name="fillStyle"/> -->
+                        <input type="color" class="fill-style" name="fill-style" />
+                        <input type="color" class="stroke-style" name="stroke-style" />
 
                         <section></section><br>
                         <button class="share">Share</button>
                     </div>
                 </div>
             </div>
-            <img hidden>
         </div>
-
     </section>
+
     <footer class="main-footer full main-layout">
         <div class="logo">memegen</div>
         <small>All Rights Reserved 2022</small>

@@ -11,3 +11,11 @@ function toggleMemes() {
     clearCanvas()
 }
 
+function toggleUpDown() {
+   
+}
+
+function alignToRight() {
+    
+}
+
