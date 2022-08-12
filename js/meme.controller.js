@@ -7,6 +7,8 @@ function onInit() {
     renderGallery()
     gElCanvas = document.querySelector('#my-canvas')
     gCtx = gElCanvas.getContext('2d')
+    addListeners()
+    // renderMeme()
 }
 
 function renderMeme() {
@@ -21,6 +23,27 @@ function renderMeme() {
     img.onload = () => {
         gCtx.drawImage(img, 0, 0, gElCanvas.width, gElCanvas.height)
     }
+}
+
+function draw(txt, ev) {
+    ev.preventDefault()
+    setLineTxt(txt)
+    const meme = getMeme()
+    switch (meme.selectedLineIdx) {
+        case 0:
+            drawText(meme.lines[0].txt, gElCanvas.width / 2, gElCanvas.height / 11)
+            break;
+        case 1:
+            drawText(meme.lines[1].txt, gElCanvas.width / 2, gElCanvas.height / 1.1);
+            break;
+        case 2:
+            drawText(meme.lines[2].txt, gElCanvas.width / 2, gElCanvas.height / 2);
+            break;
+    }
+    console.log(meme)
+    const input = document.querySelector('[name=txt]')
+    console.log(input)
+    input.value = ''
 }
 
 function onToggleUpDown() {
@@ -38,44 +61,24 @@ function onTextAlign(align) {
     textAlign(align)
 }
 
-function draw(txtObj, ev) {
-    ev.preventDefault()
-    const meme = getMeme()
-    switch (meme.selectedLineIdx) {
-        case 0:
-            drawText(txtObj, gElCanvas.width / 2, gElCanvas.height / 11)
-            break;
-        case 1:
-            drawText(txtObj, gElCanvas.width / 2, gElCanvas.height / 1.1);
-            break;
-        case 2:
-            drawText(txtObj, gElCanvas.width / 2, gElCanvas.height / 2);
-            break;
-    }
-    const elTxt = document.querySelector('[name=txt]')
-    elTxt.value = ''
-}
 
 function drawText(txt, x, y) {
     const font = document.querySelector('[name=select-font]').value
     // console.log(font)
     const fillStyle = document.querySelector('.fill-style').value
     const strokeStyle = document.querySelector('.stroke-style').value
-    // console.log(txt)
-    let elTxt = document.querySelector('.input-txt').value
-    // console.log(elTxt)
     const meme = getMeme()
-    console.log(meme)
 
     gCtx.beginPath()
     gCtx.textBaseline = 'middle'
-    gCtx.textAlign = meme.align
+    // console.log(meme.lines[meme.selectedLineIdx].align)
+    gCtx.textAlign = meme.lines[meme.selectedLineIdx].align
     gCtx.lineWidth = 1
     gCtx.font = '60px ' + font
     gCtx.fillStyle = fillStyle
     gCtx.strokeStyle = strokeStyle
-    gCtx.fillText(elTxt, x, y)
-    gCtx.strokeText(elTxt, x, y)
+    gCtx.fillText(txt, x, y)
+    gCtx.strokeText(txt, x, y)
     gCtx.closePath()
 }
 
@@ -125,6 +128,40 @@ function downloadCanvas(elLink) {
     elLink.href = data;
     elLink.download = 'my-canvas';
 }
+
+function resizeCanvas() {
+    const elContainer = document.querySelector('.canvas-container')
+    gElCanvas.width = elContainer.offsetWidth
+    gElCanvas.height = elContainer.offsetHeight
+}
+
+function addListeners() {
+    // addMouseListeners()
+    // addTouchListeners()
+    window.addEventListener('resize', () => {
+        resizeCanvas()
+        renderMeme()
+
+    })
+}
+
+
+
+// const input = document.querySelector('.input-txt')
+// const log = document.getElementById('values')
+// input.addEventListener('input', updateValue)
+
+// function updateValue(el) {
+//     log.textContent = el.target.value
+//     console.log(log.textContent)
+// }
+// function clearLine() {
+//     let line = document.querySelector('.contenteditable')
+//     line.innerText = ''
+// }
+// function save(el){
+//     console.log('Saving:', el.innerHTML)
+// }
 
 
 

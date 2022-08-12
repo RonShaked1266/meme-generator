@@ -1,4 +1,5 @@
 .grid-container {
+    min-height: 66vh;
     background-color: var(--clr2);
 }
 

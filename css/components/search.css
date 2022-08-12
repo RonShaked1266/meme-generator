@@ -1,5 +1,5 @@
 .search {
-    min-height: 92px;
+    min-height: 52px;
     padding-inline: 10px;
 }
 
@@ -8,7 +8,7 @@
     color: var(--clr6);
     font-size: 1em;
     padding: 0.2em;
-    margin-block-start: 2.5em;
+    margin-block: 0.5em;
 }
 
 .search .select {
@@ -16,5 +16,4 @@
     color: var(--clr6);
     font-size: 1em;
     padding: 0.2em;
-    margin-block: 2.5em;
 }

@@ -49,26 +49,28 @@
         <div class="editor-content full main-layout">
             <div class="main-content flex">
 
-                <!-- <div class="canvas-container"> -->
-                <canvas id="my-canvas" height="550" width="550"></canvas>
-                <!-- </div> -->
-                <img hidden>
+                <div class="canvas-container">
+                    <!-- <div class="contenteditable" contenteditable id="values"
+                     onblur="save(this)"></div> -->
+                    <canvas id="my-canvas" height="550" width="550">
+                    </canvas>
+                </div>
 
                 <div class="generator-container flex">
                     <div class="generator">
                         <input type="text" class="input-txt" placeholder="" name="txt"
-                            onchange="draw({txt: this.value}, event)" minlength="1" maxlength="" ><br><br>
+                            onchange="draw(this.value, event)" minlength="1" maxlength=""><br><br>
                         <button class="up-down" onclick="onToggleUpDown(this)"><img src="/icons/up-down.png"></button>
                         <button class="add" onclick="onAddLine(this)"><img src="/icons/add.png"></button>
-                        <button class="trash" onclick="clearCanvas()"><img src="/icons/trash.png"></button><br><br>
+                        <button class="trash" onclick="clearCanvas()"><img src="/icons/trash.png"></button><br>
                         <button class="increas-font"><img src="/icons/increase-font.png"></button>
                         <button class="decrease-font"><img src="/icons/decrease-font.png"></button>
                         <button class="right" onclick="onTextAlign('right')"><img
-                            src="/icons/align-to-left.png"></button>
-                            <button class="center" onclick="onTextAlign('center')"><img
-                                    src="/icons/center-text-alignment.png"></button>
-                            <button class="left" onclick="onTextAlign('left')"><img
-                                src="/icons/align-to-right.png"></button><br><br>
+                                src="/icons/align-to-right.png"></button>
+                        <button class="center" onclick="onTextAlign('center')"><img
+                                src="/icons/center-text-alignment.png"></button>
+                        <button class="left" onclick="onTextAlign('left')"><img
+                                src="/icons/align-to-left.png"></button><br><br>
                         <button class="text-stroke"><img src="/icons/text-stroke.png"></button>
                         <select class="select" name="select-font">
                             <option value="impact">Impact</option>

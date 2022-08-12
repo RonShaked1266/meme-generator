@@ -3,7 +3,6 @@
 const STORAGE_KEY = 'imgDB'
 
 var gImgs
-var gTxtObj = { txt: '' }
 var gKeywordSearchCountMap = { 'funny': 12, 'cat': 16, 'baby': 2 }
 var gFilterBy = 'all'
 
@@ -28,6 +27,7 @@ gImgs = [
     { id: 18, url: 'img/18.jpg', keywords: ['funny'] },
 ]
 
+
 function setFilter(filterBy) {
     gFilterBy = filterBy
 }
@@ -37,9 +37,10 @@ function setImg(imgId) {
     // console.log(gMeme.selectedImgId)  
 }
 
-function setLineTxt(txtObj) {
-    if (txtObj.txt !== undefined) gTxtObj.txt = txtObj.txt
-    return gTxt
+function setLineTxt(txt) {
+    if (gMeme.selectedLineIdx === 0) gMeme.lines[0].txt = txt 
+    if (gMeme.selectedLineIdx === 1) gMeme.lines[1].txt = txt 
+    if (gMeme.selectedLineIdx === 2) gMeme.lines[2].txt = txt  
 }
 
 function toggleUpDown() {
@@ -56,11 +57,14 @@ function addLine() {
 
 
 function textAlign(align) {
-    gMeme.align = align
+    if (gMeme.selectedLineIdx === 0) gMeme.lines[0].align = align 
+    if (gMeme.selectedLineIdx === 1) gMeme.lines[1].align = align 
+    if (gMeme.selectedLineIdx === 2) gMeme.lines[2].align = align 
+
 }
 
 // function increaseFontSizeBy1px() {
-//     let size = 70
+//     let size = 60
 //     document.querySelector('.increas-font').onclick = () => ++size
 // }
 
@@ -68,14 +72,13 @@ var gMeme = {
     selectedImgId: 0,
     selectedLineIdx: 0,
     lines: [
-        {
-            txt: 'I sometimes eat Falafel',
-            size: 70,
-            align: 'center',
-            color: 'red'
-        }
+        {txt: '', size: 20, align: 'center', color: 'red'},
+        {txt: '', size: 20, align: 'center', color: 'red'},
+        {txt: '', size: 20, align: 'center', color: 'red'}
     ]
 }
+// console.log(gMeme.lines[0])
+
 
 function getMeme() {
     return gMeme

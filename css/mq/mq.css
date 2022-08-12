@@ -32,6 +32,9 @@
     canvas {
         margin-bottom: 20px;
     }
+    .main-header .main-nav {
+        position: absolute;
+    }
 }
 
 /* SMAll */
@@ -46,8 +49,20 @@
         gap: 30px;
         padding-block: 30px;
     }
-    canvas {
-        margin-bottom: 20px;
+    .search {
+        min-height: 92px;
+    }
+    .search .search-input {
+        margin-block: 2.5em;
+    }
+    .canvas-container {
+        width: 50%;
+        height:50%;
+        margin-inline-start: 10px;
+        margin-inline-end: 120px;
+    }
+    .contenteditable {
+        width: 450px;
     }
 }
 
@@ -65,9 +80,7 @@
     .main-content {
         flex-direction: row;
     }
-    canvas {
-        margin-inline-start: 10px;
-        margin-inline-end: 90px;
-        margin-bottom: 0;
+    .generator-container {
+        margin-block-start: 0;
     }
 }

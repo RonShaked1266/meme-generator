@@ -5,27 +5,42 @@
     padding-block: 30px;
 }
 
+.canvas-container {
+    background-color: var(--clr2);
+    margin: 0 auto;
+    width: 90vw;
+    height:90vw;
+}
+
 .main-content {
     flex-direction: column;
 }
 .main-content >* {
     justify-content: center;
-    align-items: center;
-    
+    align-items: center; 
 }
 
 .generator-container {
     flex-direction: column;
     text-align: center;
+    margin-block-start: 20px;
 }
 
 canvas {
     display: flex;
     background-color: #fff;
-    margin-inline: 10px;
-    /* margin-inline-end: 100px; */
 }
 
+.contenteditable {
+    height: 1.2em;
+    width: 90vw;
+    position: absolute;
+    display: flex;
+    justify-content: center;
+    justify-self: center;
+    font-family: impact;
+    font-size: 30px;
+}
 
 .generator .input-txt {
     font-family: impact, serif;
