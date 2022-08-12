@@ -9,6 +9,7 @@
     font-size: 1em;
     padding: 0.2em;
     margin-block: 0.5em;
+    cursor: pointer;
 }
 
 .search .select {
@@ -16,4 +17,24 @@
     color: var(--clr6);
     font-size: 1em;
     padding: 0.2em;
+    cursor: pointer;
+}
+
+.search .flexible {
+    width: 6.5em;
+    height: 1.8em;
+    font-family: montserrat, serif;
+    color: var(--clr6);
+    font-size: 1em;
+    /* padding: 1.2em; */
+    text-align: center;
+    border: 1px solid var(--clr6);
+    border-radius: 3px;
+    /* margin: 5px; */
+    cursor: pointer;
+}
+
+.search .flexible:hover {
+    border: 1.8px solid var(--clr4);
+    color: var(--clr4);
 }

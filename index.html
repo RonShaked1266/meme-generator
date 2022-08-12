@@ -39,6 +39,7 @@
                 <option value="cat">Cat</option>
                 <option value="baby">Baby</option>
             </select>
+            <button class="flexible" onclick="drawRandomMeme(event)">I'm flexible</button>
         </div>
         <div class="grid-container full main-layout">
             <div class="grid">
@@ -48,7 +49,7 @@
     <section class="editor main-layout">
         <div class="editor-content full main-layout">
             <div class="main-content flex">
-
+                <!-- <input type="file" class="file-input" name="image" onchange="onImgInput(event)" /><br> -->
                 <div class="canvas-container">
                     <!-- <div class="contenteditable" contenteditable id="values"
                      onblur="save(this)"></div> -->
@@ -63,8 +64,8 @@
                         <button class="up-down" onclick="onToggleUpDown(this)"><img src="/icons/up-down.png"></button>
                         <button class="add" onclick="onAddLine(this)"><img src="/icons/add.png"></button>
                         <button class="trash" onclick="clearCanvas()"><img src="/icons/trash.png"></button><br>
-                        <button class="increas-font"><img src="/icons/increase-font.png"></button>
-                        <button class="decrease-font"><img src="/icons/decrease-font.png"></button>
+                        <button class="increase-font" onclick="onIncreaseFontSize()"><img src="/icons/increase-font.png"></button>
+                        <button class="decrease-font" onclick="onDecreaseFontSize()"><img src="/icons/decrease-font.png"></button>
                         <button class="right" onclick="onTextAlign('right')"><img
                                 src="/icons/align-to-right.png"></button>
                         <button class="center" onclick="onTextAlign('center')"><img

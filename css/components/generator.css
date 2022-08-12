@@ -31,7 +31,7 @@ canvas {
     background-color: #fff;
 }
 
-.contenteditable {
+/* .contenteditable {
     height: 1.2em;
     width: 90vw;
     position: absolute;
@@ -40,7 +40,7 @@ canvas {
     justify-self: center;
     font-family: impact;
     font-size: 30px;
-}
+} */
 
 .generator .input-txt {
     font-family: impact, serif;
@@ -51,6 +51,19 @@ canvas {
 }
 
 
+/* .file-input {
+    background-color: var(--clr3);
+    width: 220px;
+    height: 45px;
+    border: none;
+    border-radius: 10px;
+    color: var(--clr4);
+    font-family: montserra;
+    font-size: 1em;
+    margin-inline-start: 10px;
+    padding: 10px;
+    text-align: center;
+} */
 .generator .share {
     background-color: var(--clr1);
     font-family: montserrat, serif;
@@ -61,7 +74,6 @@ canvas {
     padding: 5px;
     
 }
-
 .generator .download {
     background-color: var(--clr1);
     width: 65px;
@@ -122,5 +134,11 @@ body.right .right:hover {
     border: 2px solid var(--clr1);
 }
 body.left .left:hover {
+    border: 2px solid var(--clr1);
+}
+body.size-up-clicked .increase-font:hover {
+    border: 2px solid var(--clr1);
+}
+body.size-down-clicked .decrease-font:hover {
     border: 2px solid var(--clr1);
 }

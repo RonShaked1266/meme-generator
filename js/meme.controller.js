@@ -27,8 +27,9 @@ function renderMeme() {
 
 function draw(txt, ev) {
     ev.preventDefault()
-    setLineTxt(txt)
     const meme = getMeme()
+    const input = document.querySelector('[name=txt]')
+    setLineTxt(txt)
     switch (meme.selectedLineIdx) {
         case 0:
             drawText(meme.lines[0].txt, gElCanvas.width / 2, gElCanvas.height / 11)
@@ -37,11 +38,10 @@ function draw(txt, ev) {
             drawText(meme.lines[1].txt, gElCanvas.width / 2, gElCanvas.height / 1.1);
             break;
         case 2:
-            drawText(meme.lines[2].txt, gElCanvas.width / 2, gElCanvas.height / 2);
+            drawText(meme.lines[2].txt, gElCanvas.width / 2, gElCanvas.height / 2)
             break;
     }
     console.log(meme)
-    const input = document.querySelector('[name=txt]')
     console.log(input)
     input.value = ''
 }
@@ -61,6 +61,15 @@ function onTextAlign(align) {
     textAlign(align)
 }
 
+function onIncreaseFontSize() {
+    document.body.classList.toggle('size-up-clicked')
+    increaseFontSizeBy1px()
+}
+
+function onDecreaseFontSize() {
+    document.body.classList.toggle('size-down-clicked')
+    decreaseFontSizeBy1px()
+}
 
 function drawText(txt, x, y) {
     const font = document.querySelector('[name=select-font]').value
@@ -74,7 +83,7 @@ function drawText(txt, x, y) {
     // console.log(meme.lines[meme.selectedLineIdx].align)
     gCtx.textAlign = meme.lines[meme.selectedLineIdx].align
     gCtx.lineWidth = 1
-    gCtx.font = '60px ' + font
+    gCtx.font = meme.lines[meme.selectedLineIdx].size + 'px ' + font
     gCtx.fillStyle = fillStyle
     gCtx.strokeStyle = strokeStyle
     gCtx.fillText(txt, x, y)
@@ -141,9 +150,59 @@ function addListeners() {
     window.addEventListener('resize', () => {
         resizeCanvas()
         renderMeme()
-
     })
 }
+
+function drawRandomMeme(ev) {
+    ev.preventDefault
+    document.body.classList.toggle('editor-open')
+    const imgId = getRandomIntInclusive(1, 18)
+    const imgObj = getImg(imgId)
+    const img = new Image()
+    console.log(img)
+    img.src = imgObj.url
+    img.onload = () => {
+        gCtx.drawImage(img, 0, 0, gElCanvas.width, gElCanvas.height)
+    }
+    drawRandomText(gElCanvas.width / 2, gElCanvas.height / 2)
+}
+
+function drawRandomText(x, y) {
+    let txt = makeLorem(3)
+    console.log(txt)
+    gCtx.beginPath()
+    gCtx.textBaseline = 'middle'
+    gCtx.textAlign = 'center'
+    gCtx.lineWidth = 1
+    gCtx.font = getRandomIntInclusive(30, 60) + 'px impact' 
+    gCtx.fillStyle = getRandomColor()
+    gCtx.strokeStyle = getRandomColor()
+    gCtx.fillText(txt, x, y)
+    gCtx.strokeText(txt, x, y)
+    gCtx.closePath()
+}
+
+// The next 2 functions handle IMAGE UPLOADING to img tag from file system: 
+// function onImgInput(ev) {
+//     loadImageFromInput(ev, renderImg)
+// }
+
+// function loadImageFromInput(ev, onImageReady) {
+//     document.querySelector('.share-container').innerHTML = ''
+
+//     var reader = new FileReader()
+
+//     reader.onload = (event) => {
+//         var img = new Image()
+//         img.src = event.target.result
+//         img.onload = onImageReady.bind(null, img)
+//     }
+//     reader.readAsDataURL(ev.target.files[0])
+// }
+
+// function renderImg(img) {
+//     gCtx.drawImage(img, 0, 0, gElCanvas.width, gElCanvas.height);
+// }
 
 
 
