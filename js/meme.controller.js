@@ -23,6 +23,20 @@ function renderMeme() {
     }
 }
 
+function onToggleUpDown() {
+    document.body.classList.toggle('updown-clicked')
+    toggleUpDown()
+}
+
+function onAddLine() {
+    document.body.classList.toggle('add-clicked')
+    addLine()
+}
+
+function onTextAlign(align) {
+    document.body.classList.toggle(align)
+    textAlign(align)
+}
 
 function draw(txtObj, ev) {
     ev.preventDefault()
@@ -34,59 +48,42 @@ function draw(txtObj, ev) {
         case 1:
             drawText(txtObj, gElCanvas.width / 2, gElCanvas.height / 1.1);
             break;
-        }
-        const elTxt = document.querySelector('[name=txt]')
-        elTxt.value = ''
+        case 2:
+            drawText(txtObj, gElCanvas.width / 2, gElCanvas.height / 2);
+            break;
     }
-    // function txtDirection(ev) {
-    //     console.log('center')
-    //     const meme = getMeme()
-    //     switch (meme.align) {
-    //         case 'center':
-    //             gCtx.textAlign = 'center'
-    //             break;
-    //             case 'right':
-    //             gCtx.textAlign = 'right'
-    //             break;
-    //             case 'left':
-    //             gCtx.textAlign = 'left'
-    //             break;
-    //     }
-    // }
-    
-    
-    function drawText(txt, x, y) {
-        const font = document.querySelector('[name=select-font]').value
-        console.log(font)
-        const fillStyle = document.querySelector('.fill-style').value
-        const strokeStyle = document.querySelector('.stroke-style').value
-        console.log(txt)
-        let elTxt = document.querySelector('.input-txt').value
-        console.log(elTxt)
-        gCtx.beginPath()
-        gCtx.textBaseline = 'middle'
-        gCtx.textAlign = 'center'
-        gCtx.lineWidth = 1
-        gCtx.font = font
-        gCtx.fillStyle = fillStyle
-        gCtx.strokeStyle = strokeStyle
-        gCtx.fillText(elTxt, x, y)
-        gCtx.strokeText(elTxt, x, y)
-    gCtx.closePath()
-    
-    
+    const elTxt = document.querySelector('[name=txt]')
+    elTxt.value = ''
 }
 
+function drawText(txt, x, y) {
+    const font = document.querySelector('[name=select-font]').value
+    // console.log(font)
+    const fillStyle = document.querySelector('.fill-style').value
+    const strokeStyle = document.querySelector('.stroke-style').value
+    // console.log(txt)
+    let elTxt = document.querySelector('.input-txt').value
+    // console.log(elTxt)
+    const meme = getMeme()
+    console.log(meme)
+
+    gCtx.beginPath()
+    gCtx.textBaseline = 'middle'
+    gCtx.textAlign = meme.align
+    gCtx.lineWidth = 1
+    gCtx.font = '60px ' + font
+    gCtx.fillStyle = fillStyle
+    gCtx.strokeStyle = strokeStyle
+    gCtx.fillText(elTxt, x, y)
+    gCtx.strokeText(elTxt, x, y)
+    gCtx.closePath()
+}
 
 function clearCanvas() {
-    gCtx.clearRect(0, 0, gElCanvas.width, gElCanvas.height);
+    document.body.classList.toggle('trash-clicked')
+    gCtx.clearRect(0, 0, gElCanvas.width, gElCanvas.height)
+    renderMeme()
 }
-
-
-
-// function increaseFontSizeBy10px() {
-//     
-// }
 
 function uploadImg() {
     const imgDataUrl = gElCanvas.toDataURL("image/jpeg");

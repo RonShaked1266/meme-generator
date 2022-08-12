@@ -24,6 +24,13 @@
 
     <section class="gallery main-layout">
         <div class="search">
+            <!-- <input list="browsers" placeholder="Search...">
+            <datalist class="select" onchange="onSetFilterBy(this.value)" id="browsers">
+                <option value="all">
+                <option value="funny">
+                <option value="cat">
+                <option value="baby">
+            </datalist> -->
             <input data-trans="search-placeholder" onchange="" type="search" class="search-input"
                 placeholder="Search...">
             <select class="select" onchange="onSetFilterBy(this.value)">
@@ -50,19 +57,18 @@
                 <div class="generator-container flex">
                     <div class="generator">
                         <input type="text" class="input-txt" placeholder="" name="txt"
-                            onchange="draw({txt: this.value}, event)"><br><br>
-                        <button class="up-down" onclick="toggleUpDown(this)"><img src="/icons/up-down.png"></button>
-                        <button class="add"><img src="/icons/add.png"></button>
+                            onchange="draw({txt: this.value}, event)" minlength="1" maxlength="" ><br><br>
+                        <button class="up-down" onclick="onToggleUpDown(this)"><img src="/icons/up-down.png"></button>
+                        <button class="add" onclick="onAddLine(this)"><img src="/icons/add.png"></button>
                         <button class="trash" onclick="clearCanvas()"><img src="/icons/trash.png"></button><br><br>
-                        <button class="increas-font" onclick="increaseFontSizeBy10px()"><img
-                                src="/icons/increase-font.png"></button>
+                        <button class="increas-font"><img src="/icons/increase-font.png"></button>
                         <button class="decrease-font"><img src="/icons/decrease-font.png"></button>
-                        <button class="align-to-right" onclick="txtDirection('right')"><img
-                                src="/icons/align-to-right.png"></button>
-                        <button class="align-to-left" onclick="txtDirection('left')"><img
-                                src="/icons/align-to-left.png"></button>
-                        <button class="center-text-alignment" onclick="txtDirection('center')"><img
-                                src="/icons/center-text-alignment.png"></button><br><br>
+                        <button class="right" onclick="onTextAlign('right')"><img
+                            src="/icons/align-to-left.png"></button>
+                            <button class="center" onclick="onTextAlign('center')"><img
+                                    src="/icons/center-text-alignment.png"></button>
+                            <button class="left" onclick="onTextAlign('left')"><img
+                                src="/icons/align-to-right.png"></button><br><br>
                         <button class="text-stroke"><img src="/icons/text-stroke.png"></button>
                         <select class="select" name="select-font">
                             <option value="impact">Impact</option>

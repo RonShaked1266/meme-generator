@@ -28,7 +28,7 @@ canvas {
 
 
 .generator .input-txt {
-    font-family: montserrat, serif;
+    font-family: impact, serif;
     color: var(--clr6);
     font-size: 1em;
     padding: 0.4em;
@@ -89,4 +89,23 @@ canvas {
     color: var(--clr6);
     font-size: 1em;
     padding: 0.2em;
+}
+
+body.updown-clicked .up-down:hover {
+    border: 2px solid var(--clr1);
+}
+body.add-clicked .add:hover {
+    border: 2px solid var(--clr1);
+}
+body.trash-clicked .trash:hover {
+    border: 2px solid var(--clr1);
+}
+body.center .center:hover {
+    border: 2px solid var(--clr1);
+}
+body.right .right:hover {
+    border: 2px solid var(--clr1);
+}
+body.left .left:hover {
+    border: 2px solid var(--clr1);
 }
