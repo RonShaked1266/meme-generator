@@ -51,7 +51,7 @@ function renderMeme() {
 }
 
 //DRAW-TEXT/RECT
-function draw() {
+function drawInLine() {
     const input = document.querySelector('[name=txt]')
     setLineTxt(input.value)
     const meme = getMeme()

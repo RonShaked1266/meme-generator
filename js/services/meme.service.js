@@ -1,10 +1,11 @@
 'use strict'
 
-const STORAGE_KEY = 'imgDB'
+const STORAGE_KEY = 'memeDB'
+
 
 var gMeme
 var gImgs
-var gKeywordSearchCountMap = { 'funny': 12, 'cat': 16, 'baby': 2 }
+// var gKeywordSearchCountMap = { 'funny': 12, 'cat': 16, 'baby': 2 }
 var gFilterBy = 'all'
 var gRandomMeme
 
@@ -29,6 +30,18 @@ gImgs = [
     { id: 18, url: 'img/18.jpg', keywords: ['funny'] },
 ]
 
+// function createMeme(pos, txt) {
+//     gMeme = {
+//         selectedImgId: 0,
+//         selectedLineIdx: 0,
+//         lines: [
+//             { pos, txt, size: 50, align: 'center', color: 'white', isDrag: false },
+//             { pos, txt, size: 50, align: 'center', color: 'white', isDrag: false },
+//             { pos, txt, size: 50, align: 'center', color: 'white', isDrag: false }
+//         ]
+//     }
+//     _saveMemesToStorage()
+// }
 gMeme = {
     selectedImgId: 0,
     selectedLineIdx: 0,
@@ -131,8 +144,8 @@ function moveText(dx, dy) {
     gMeme.lines[0].pos.y += dy
 }
 
-function _saveImgsToStorage() {
-    saveToStorage(STORAGE_KEY, gImgs)
+function _saveMemesToStorage() {
+    saveToStorage(STORAGE_KEY, gMeme)
 }
 
 
