@@ -8,8 +8,8 @@ function onInit() {
     gElCanvas = document.querySelector('#my-canvas')
     gCtx = gElCanvas.getContext('2d')
     addListeners()
-    // renderMeme()
 }
+
 
 function renderMeme() {
     const meme = getMeme()
@@ -34,17 +34,49 @@ function draw(txt, ev) {
         case 0:
             drawText(meme.lines[0].txt, gElCanvas.width / 2, gElCanvas.height / 11)
             break;
-        case 1:
-            drawText(meme.lines[1].txt, gElCanvas.width / 2, gElCanvas.height / 1.1);
-            break;
         case 2:
-            drawText(meme.lines[2].txt, gElCanvas.width / 2, gElCanvas.height / 2)
+            drawText(meme.lines[2].txt, gElCanvas.width / 2, gElCanvas.height / 1.1)
+            break;
+        case 1:
+            drawText(meme.lines[1].txt, gElCanvas.width / 2, gElCanvas.height / 2)
             break;
     }
     console.log(meme)
     console.log(input)
     input.value = ''
 }
+
+function drawText(txt, x, y) {
+    const font = document.querySelector('[name=select-font]').value
+    // console.log(font)
+    const fillStyle = document.querySelector('.fill-style').value
+    const strokeStyle = document.querySelector('.stroke-style').value
+    const meme = getMeme()
+
+    gCtx.beginPath()
+    gCtx.textBaseline = 'middle'
+    // console.log(meme.lines[meme.selectedLineIdx].align)
+    gCtx.textAlign = meme.lines[meme.selectedLineIdx].align
+    gCtx.lineWidth = 1
+    gCtx.font = meme.lines[meme.selectedLineIdx].size + 'px ' + font
+    gCtx.fillStyle = fillStyle
+    gCtx.strokeStyle = strokeStyle
+    gCtx.fillText(txt, x, y)
+    gCtx.strokeText(txt, x, y)
+    gCtx.closePath()
+    drawRect()
+    // drawRect1(50, 50)
+}
+
+// function drawRect1(x, y) {
+//     gCtx.beginPath();
+//     gCtx.rect(x, y, 200, 200);
+//     gCtx.fillStyle = 'green';
+//     gCtx.fillRect(x, y, 200, 200);
+//     gCtx.strokeStyle = 'red';
+//     gCtx.stroke();
+//     gCtx.closePath();
+// }
 
 function onToggleUpDown() {
     document.body.classList.toggle('updown-clicked')
@@ -71,25 +103,6 @@ function onDecreaseFontSize() {
     decreaseFontSizeBy1px()
 }
 
-function drawText(txt, x, y) {
-    const font = document.querySelector('[name=select-font]').value
-    // console.log(font)
-    const fillStyle = document.querySelector('.fill-style').value
-    const strokeStyle = document.querySelector('.stroke-style').value
-    const meme = getMeme()
-
-    gCtx.beginPath()
-    gCtx.textBaseline = 'middle'
-    // console.log(meme.lines[meme.selectedLineIdx].align)
-    gCtx.textAlign = meme.lines[meme.selectedLineIdx].align
-    gCtx.lineWidth = 1
-    gCtx.font = meme.lines[meme.selectedLineIdx].size + 'px ' + font
-    gCtx.fillStyle = fillStyle
-    gCtx.strokeStyle = strokeStyle
-    gCtx.fillText(txt, x, y)
-    gCtx.strokeText(txt, x, y)
-    gCtx.closePath()
-}
 
 function clearCanvas() {
     document.body.classList.toggle('trash-clicked')
@@ -150,39 +163,69 @@ function addListeners() {
     window.addEventListener('resize', () => {
         resizeCanvas()
         renderMeme()
+        drawRandomMeme()
     })
 }
 
-function drawRandomMeme(ev) {
-    ev.preventDefault
+function drawRect() {
+    console.log('rect')
+    const meme = getMeme()
+    const linesSpace = gElCanvas.height / 1.1 - gElCanvas.height / 2
+    meme.lines.forEach((line, idx) => { 
+        const { color, size, txt } = line
+        gCtx.strokeStyle = color
+        line.y = (gElCanvas.height / 11 - (size / 2)) + (idx * (linesSpace))
+        line.x = txt.length * size / 4
+        // line.x = 0
+        // line.x = txt.length * size / 2
+        gCtx.strokeRect(line.x, line.y, (txt.length * size / 2) , size)
+    })
+}
+
+function canvasClicked(ev) {
+    const meme = getMeme()
+    let clickedStar = null
+    clickedText = meme.lines.find(line => {
+        return ev.offsetX >= line.x && ev.offsetX <= line.x + line.txt.length &&
+            ev.offsetY >= line.y && ev.offsetY <= line.y + line.size
+    })
+    if(clickedStar) { 
+        console.log('!')
+    }
+}
+
+function drawRandomMeme() {
+    // ev.preventDefault
     document.body.classList.toggle('editor-open')
-    const imgId = getRandomIntInclusive(1, 18)
+    const flexible = getRandomMeme()
+    const imgId = flexible.id
     const imgObj = getImg(imgId)
     const img = new Image()
-    console.log(img)
+    // console.log(img)
     img.src = imgObj.url
     img.onload = () => {
         gCtx.drawImage(img, 0, 0, gElCanvas.width, gElCanvas.height)
     }
     drawRandomText(gElCanvas.width / 2, gElCanvas.height / 2)
+
 }
 
 function drawRandomText(x, y) {
-    let txt = makeLorem(3)
-    console.log(txt)
+    const flexible = getRandomMeme()
     gCtx.beginPath()
     gCtx.textBaseline = 'middle'
     gCtx.textAlign = 'center'
     gCtx.lineWidth = 1
-    gCtx.font = getRandomIntInclusive(30, 60) + 'px impact' 
-    gCtx.fillStyle = getRandomColor()
-    gCtx.strokeStyle = getRandomColor()
-    gCtx.fillText(txt, x, y)
-    gCtx.strokeText(txt, x, y)
+    gCtx.font = `${flexible.txt}px impact`
+    gCtx.fillStyle = `${flexible.color}`
+    gCtx.fillText(`${flexible.txt}`, x, y)
+    gCtx.strokeStyle = `${flexible.color}`
+    gCtx.strokeText(`${flexible.txt}`, x, y)
+    // console.log(`${flexible.txt}`)
     gCtx.closePath()
 }
 
-// The next 2 functions handle IMAGE UPLOADING to img tag from file system: 
+// The next 2 functions handle IMAGE UPLOADING to img tag from file system:
 // function onImgInput(ev) {
 //     loadImageFromInput(ev, renderImg)
 // }

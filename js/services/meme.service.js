@@ -27,6 +27,43 @@ gImgs = [
     { id: 18, url: 'img/18.jpg', keywords: ['funny'] },
 ]
 
+var gMeme = {
+    selectedImgId: 0,
+    selectedLineIdx: 0,
+    lines: [
+        { txt: '', size: 50, align: 'center', color: 'white' },
+        { txt: '', size: 50, align: 'center', color: 'white' },
+        { txt: '', size: 50, align: 'center', color: 'white' }
+    ]
+}
+// console.log(gMeme.lines[0])
+
+
+function getMeme() {
+    return gMeme
+}
+
+function getImgsForDisplay() {
+    if (gFilterBy === 'all') return gImgs
+    const imgs = gImgs.filter(img =>
+        (gFilterBy === img.keywords.find(word => gFilterBy === word) && 
+        gFilterBy.toLocaleLowerCase().includes(gFilterBy.toLocaleLowerCase())))
+    return imgs
+    // return gImgs
+}
+
+// temmperry solution:
+function getImg(imgId) {
+    // console.log(gImgs[imgId-1]) 
+    // console.log(gImgs[imgId-1].url) 
+    return gImgs[imgId - 1]
+}
+
+function getImgById(imgId) {
+    // console.log(imgId)
+    const img = gImgs.find(img => imgId === img.id)
+    return img
+}
 
 function setFilter(filterBy) {
     gFilterBy = filterBy
@@ -44,14 +81,14 @@ function setLineTxt(txt) {
 }
 
 function toggleUpDown() {
-    if (gMeme.selectedLineIdx === 0) gMeme.selectedLineIdx = 1
-    else if (gMeme.selectedLineIdx === 1) gMeme.selectedLineIdx = 0
+    if (gMeme.selectedLineIdx === 0) gMeme.selectedLineIdx = 2
     else if (gMeme.selectedLineIdx === 2) gMeme.selectedLineIdx = 0
+    else if (gMeme.selectedLineIdx === 1) gMeme.selectedLineIdx = 2
     // console.log(gMeme.selectedLineIdx)
 }
 
 function addLine() {
-    gMeme.selectedLineIdx = 2
+    gMeme.selectedLineIdx = 1
     // console.log(gMeme.selectedLineIdx) 
 }
 
@@ -74,43 +111,15 @@ function decreaseFontSizeBy1px() {
     if (gMeme.selectedLineIdx === 2) --gMeme.lines[2].size
 }
 
-var gMeme = {
-    selectedImgId: 0,
-    selectedLineIdx: 0,
-    lines: [
-        { txt: '', size: 50, align: 'center', color: 'red' },
-        { txt: '', size: 50, align: 'center', color: 'red' },
-        { txt: '', size: 50, align: 'center', color: 'red' }
-    ]
-}
-// console.log(gMeme.lines[0])
-
-
-function getMeme() {
-    return gMeme
+var gRandomMeme = {
+    id: getRandomIntInclusive(1, 18),
+    txt: makeLorem(3),
+    color: getRandomColor(),
+    size: getRandomIntInclusive(30, 60)
 }
 
-function getImgsForDisplay() {
-    if (gFilterBy === 'all') return gImgs
-    const imgs = gImgs.filter(img =>
-        (gFilterBy === img.keywords.find(word => gFilterBy === word)))
-
-    return imgs
-    // return gImgs
-}
-
-
-// temmperry solution:
-function getImg(imgId) {
-    // console.log(gImgs[imgId-1]) 
-    // console.log(gImgs[imgId-1].url) 
-    return gImgs[imgId - 1]
-}
-
-function getImgById(imgId) {
-    // console.log(imgId)
-    const img = gImgs.find(img => imgId === img.id)
-    return img
+function getRandomMeme() {
+    return gRandomMeme
 }
 
 function _saveImgsToStorage() {

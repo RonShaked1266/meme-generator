@@ -31,7 +31,7 @@
                 <option value="cat">
                 <option value="baby">
             </datalist> -->
-            <input data-trans="search-placeholder" onchange="" type="search" class="search-input"
+            <input data-trans="search-placeholder" onchange="onSetFilterBy(this.value)" type="search" class="search-input"
                 placeholder="Search...">
             <select class="select" onchange="onSetFilterBy(this.value)">
                 <option value="all">All</option>
@@ -39,7 +39,7 @@
                 <option value="cat">Cat</option>
                 <option value="baby">Baby</option>
             </select>
-            <button class="flexible" onclick="drawRandomMeme(event)">I'm flexible</button>
+            <button class="flexible" onclick="drawRandomMeme()">I'm flexible</button>
         </div>
         <div class="grid-container full main-layout">
             <div class="grid">
@@ -53,7 +53,7 @@
                 <div class="canvas-container">
                     <!-- <div class="contenteditable" contenteditable id="values"
                      onblur="save(this)"></div> -->
-                    <canvas id="my-canvas" height="550" width="550">
+                    <canvas id="my-canvas" height="550" width="550" onclick="canvasClicked(event)">
                     </canvas>
                 </div>
 
@@ -88,6 +88,7 @@
                         <button class="share" onclick="uploadImg()">Share</button>
                         <p class="user-msg"></p>
                         <div class="share-container"></div>
+                        <!-- <button onclick="drawRect()">rect</button> -->
                     </div>
                 </div>
             </div>
