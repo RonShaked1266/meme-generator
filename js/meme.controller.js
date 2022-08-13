@@ -17,6 +17,7 @@ function renderCanvas() {
     gCtx.fillRect(0, 0, gElCanvas.width, gElCanvas.height)
     renderText()
 }
+
 //RENDER-TEXT&IMG
 function renderText() {
     const meme = getMeme()
@@ -27,12 +28,11 @@ function renderText() {
     const img = new Image()
     if (imgObj !== undefined) {
         img.src = imgObj.url
-        img.onload = () => {
-            gCtx.drawImage(img, 0, 0, gElCanvas.width, gElCanvas.height)
-            drawText(txt, pos.x, pos.y)
-        }
+        gCtx.drawImage(img, 0, 0, gElCanvas.width, gElCanvas.height)
+        drawText(txt, pos.x, pos.y)
     }
 }
+
 // RENDER-IMG
 function renderMeme() {
     const meme = getMeme()
@@ -44,9 +44,7 @@ function renderMeme() {
     // console.log(img)
     if (imgObj !== undefined) {
         img.src = imgObj.url
-        img.onload = () => {
-            gCtx.drawImage(img, 0, 0, gElCanvas.width, gElCanvas.height)
-        }
+        gCtx.drawImage(img, 0, 0, gElCanvas.width, gElCanvas.height)
     }
 }
 
@@ -68,10 +66,12 @@ function drawInLine() {
     }
     // console.log(meme)
     // console.log(input)
-    input.value = ''
+    // input.value = ''
 }
 
 function drawText(txt, x, y) {
+    clearCanvas()
+    renderMeme()
     const font = document.querySelector('[name=select-font]').value
     const fillStyle = document.querySelector('.fill-style').value
     const strokeStyle = document.querySelector('.stroke-style').value
@@ -137,7 +137,6 @@ function drawRectLine() {
 
     })
 }
-
 
 //CONTROL-BOX
 function onToggleUpDown() {
