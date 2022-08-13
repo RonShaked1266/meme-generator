@@ -17,8 +17,11 @@ body {
 
 img {
     width: 100%;
+    
+}
+
+img:hover {
     cursor: pointer;
-    /* position: relative; */
 }
 
 a {

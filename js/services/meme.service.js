@@ -53,15 +53,13 @@ function getImgsForDisplay() {
     return imgs
 }
 
-// temmperry solution:
+// temporary solution:
 function getImg(imgId) {
-    // console.log(gImgs[imgId-1]) 
     // console.log(gImgs[imgId-1].url) 
     return gImgs[imgId - 1]
 }
 
 function getImgById(imgId) {
-    // console.log(imgId)
     const img = gImgs.find(img => imgId === img.id)
     return img
 }

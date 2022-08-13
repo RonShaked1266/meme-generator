@@ -17,3 +17,7 @@
     object-fit: cover;    
 }
 
+.grid .img:hover {
+    border: 4px solid transparent;
+}
+
