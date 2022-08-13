@@ -33,9 +33,9 @@ gMeme = {
     selectedImgId: 0,
     selectedLineIdx: 0,
     lines: [
-        { pos:{ x: 0, y: 0 }, txt: '', size: 50, align: 'center', color: 'white', isDrag: false },
-        { pos:{ x: 0, y: 0 }, txt: '', size: 50, align: 'center', color: 'white', isDrag: false },
-        { pos:{ x: 0, y: 0 }, txt: '', size: 50, align: 'center', color: 'white', isDrag: false }
+        { pos: { x: 0, y: 0 }, txt: '', size: 50, align: 'center', color: 'white', isDrag: false },
+        { pos: { x: 0, y: 0 }, txt: '', size: 50, align: 'center', color: 'white', isDrag: false },
+        { pos: { x: 0, y: 0 }, txt: '', size: 50, align: 'center', color: 'white', isDrag: false }
     ]
 }
 console.log(gMeme.lines[0])
@@ -48,8 +48,8 @@ function getMeme() {
 function getImgsForDisplay() {
     if (gFilterBy === 'all') return gImgs
     const imgs = gImgs.filter(img =>
-        (gFilterBy === img.keywords.find(word => gFilterBy === word) && 
-        gFilterBy.toLocaleLowerCase().includes(gFilterBy.toLocaleLowerCase())))
+    (gFilterBy.toLowerCase() === img.keywords.find(word => gFilterBy.toLowerCase() === word)
+        && gFilterBy.toLowerCase().includes(gFilterBy.toLowerCase())))
     return imgs
 }
 
@@ -71,11 +71,11 @@ function setFilter(filterBy) {
 }
 
 function setImg(imgId) {
-    if (imgId !== undefined) gMeme.selectedImgId = imgId 
+    if (imgId !== undefined) gMeme.selectedImgId = imgId
 }
 
 function addLine() {
-    gMeme.selectedLineIdx = 1 
+    gMeme.selectedLineIdx = 1
 }
 
 function setLineTxt(txt) {
@@ -128,11 +128,11 @@ function setTextPos(x, y) {
     if (gMeme.selectedLineIdx === 0) {
         gMeme.lines[0].pos.x = x
         gMeme.lines[0].pos.y = y
-    } 
+    }
     if (gMeme.selectedLineIdx === 1) {
         gMeme.lines[1].pos.x = x
-        gMeme.lines[1].pos.y = y  
-    } 
+        gMeme.lines[1].pos.y = y
+    }
     if (gMeme.selectedLineIdx === 2) {
         gMeme.lines[2].pos.x = x
         gMeme.lines[2].pos.y = y
@@ -142,11 +142,11 @@ function moveText(dx, dy) {
     if (gMeme.selectedLineIdx === 0) {
         gMeme.lines[0].pos.x += dx
         gMeme.lines[0].pos.y += dy
-    } 
+    }
     if (gMeme.selectedLineIdx === 1) {
         gMeme.lines[1].pos.x += dx
-        gMeme.lines[1].pos.y += dy  
-    } 
+        gMeme.lines[1].pos.y += dy
+    }
     if (gMeme.selectedLineIdx === 2) {
         gMeme.lines[2].pos.x += dx
         gMeme.lines[2].pos.y += dy

@@ -11,6 +11,7 @@ function onInit() {
     addListeners()
     renderCanvas()
 }
+
 function renderCanvas() {
     gCtx.fillStyle = "white"
     gCtx.fillRect(0, 0, gElCanvas.width, gElCanvas.height)
@@ -111,52 +112,15 @@ function clearCanvas() {
     renderMeme()
 }
 
-function uploadImg() {
-    const imgDataUrl = gElCanvas.toDataURL("image/jpeg");
-
-    // A function to be called if request succeeds
-    function onSuccess(uploadedImgUrl) {
-        const encodedUploadedImgUrl = encodeURIComponent(uploadedImgUrl)
-        document.querySelector('.user-msg').innerText = `Your photo is available here: ${uploadedImgUrl}`
-
-        document.querySelector('.share-container').innerHTML = `
-        <a class="btn" href="https://www.facebook.com/sharer/sharer.php?u=${encodedUploadedImgUrl}&t=${encodedUploadedImgUrl}" title="Share on Facebook" target="_blank" onclick="window.open('https://www.facebook.com/sharer/sharer.php?u=${uploadedImgUrl}&t=${uploadedImgUrl}'); return false;">
-           Share   
-        </a>`
-    }
-    doUploadImg(imgDataUrl, onSuccess);
-}
-
-function doUploadImg(imgDataUrl, onSuccess) {
-
-    const formData = new FormData();
-    formData.append('img', imgDataUrl)
-
-    fetch('//ca-upload.com/here/upload.php', {
-        method: 'POST',
-        body: formData
-    })
-        .then(res => res.text())
-        .then((url) => {
-            console.log('Got back live url:', url);
-            onSuccess(url)
-        })
-        .catch((err) => {
-            console.error(err)
-        })
-}
-
-function downloadCanvas(elLink) {
-    const data = gElCanvas.toDataURL();
-    elLink.href = data;
-    elLink.download = 'my-canvas';
-}
-
 function resizeCanvas() {
     const elContainer = document.querySelector('.canvas-container')
     gElCanvas.width = elContainer.offsetWidth
     gElCanvas.height = elContainer.offsetHeight
 }
+
+
+
+
 
 function addListeners() {
     addMouseListeners()
@@ -283,6 +247,47 @@ function drawRandomText(x, y) {
     console.log(`${flexible.txt}`)
     console.log(`${flexible.color2}`)
     gCtx.closePath()
+}
+
+function uploadImg() {
+    const imgDataUrl = gElCanvas.toDataURL("image/jpeg");
+
+    // A function to be called if request succeeds
+    function onSuccess(uploadedImgUrl) {
+        const encodedUploadedImgUrl = encodeURIComponent(uploadedImgUrl)
+        document.querySelector('.user-msg').innerText = `Your photo is available here: ${uploadedImgUrl}`
+
+        document.querySelector('.share-container').innerHTML = `
+        <a class="btn" href="https://www.facebook.com/sharer/sharer.php?u=${encodedUploadedImgUrl}&t=${encodedUploadedImgUrl}" title="Share on Facebook" target="_blank" onclick="window.open('https://www.facebook.com/sharer/sharer.php?u=${uploadedImgUrl}&t=${uploadedImgUrl}'); return false;">
+           Share   
+        </a>`
+    }
+    doUploadImg(imgDataUrl, onSuccess);
+}
+
+function doUploadImg(imgDataUrl, onSuccess) {
+
+    const formData = new FormData();
+    formData.append('img', imgDataUrl)
+
+    fetch('//ca-upload.com/here/upload.php', {
+        method: 'POST',
+        body: formData
+    })
+        .then(res => res.text())
+        .then((url) => {
+            console.log('Got back live url:', url);
+            onSuccess(url)
+        })
+        .catch((err) => {
+            console.error(err)
+        })
+}
+
+function downloadCanvas(elLink) {
+    const data = gElCanvas.toDataURL();
+    elLink.href = data;
+    elLink.download = 'my-canvas';
 }
 
 // The next 2 functions handle IMAGE UPLOADING to img tag from file system:
