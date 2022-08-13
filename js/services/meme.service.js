@@ -2,9 +2,11 @@
 
 const STORAGE_KEY = 'imgDB'
 
+var gMeme
 var gImgs
 var gKeywordSearchCountMap = { 'funny': 12, 'cat': 16, 'baby': 2 }
 var gFilterBy = 'all'
+var gRandomMeme
 
 gImgs = [
     { id: 1, url: 'img/1.jpg', keywords: ['funny'] },
@@ -27,16 +29,16 @@ gImgs = [
     { id: 18, url: 'img/18.jpg', keywords: ['funny'] },
 ]
 
-var gMeme = {
+gMeme = {
     selectedImgId: 0,
     selectedLineIdx: 0,
     lines: [
-        { txt: '', size: 50, align: 'center', color: 'white' },
-        { txt: '', size: 50, align: 'center', color: 'white' },
-        { txt: '', size: 50, align: 'center', color: 'white' }
+        { pos:{ x: 0, y: 0 }, txt: '', size: 50, align: 'center', color: 'white', isDrag: false },
+        { pos:{ x: 0, y: 0 }, txt: '', size: 50, align: 'center', color: 'white', isDrag: false },
+        { pos:{ x: 0, y: 0 }, txt: '', size: 50, align: 'center', color: 'white', isDrag: false }
     ]
 }
-// console.log(gMeme.lines[0])
+console.log(gMeme.lines[0])
 
 
 function getMeme() {
@@ -49,7 +51,6 @@ function getImgsForDisplay() {
         (gFilterBy === img.keywords.find(word => gFilterBy === word) && 
         gFilterBy.toLocaleLowerCase().includes(gFilterBy.toLocaleLowerCase())))
     return imgs
-    // return gImgs
 }
 
 // temmperry solution:
@@ -70,8 +71,11 @@ function setFilter(filterBy) {
 }
 
 function setImg(imgId) {
-    if (imgId !== undefined) gMeme.selectedImgId = imgId
-    // console.log(gMeme.selectedImgId)  
+    if (imgId !== undefined) gMeme.selectedImgId = imgId 
+}
+
+function addLine() {
+    gMeme.selectedLineIdx = 1 
 }
 
 function setLineTxt(txt) {
@@ -84,12 +88,6 @@ function toggleUpDown() {
     if (gMeme.selectedLineIdx === 0) gMeme.selectedLineIdx = 2
     else if (gMeme.selectedLineIdx === 2) gMeme.selectedLineIdx = 0
     else if (gMeme.selectedLineIdx === 1) gMeme.selectedLineIdx = 2
-    // console.log(gMeme.selectedLineIdx)
-}
-
-function addLine() {
-    gMeme.selectedLineIdx = 1
-    // console.log(gMeme.selectedLineIdx) 
 }
 
 function textAlign(align) {
@@ -111,15 +109,48 @@ function decreaseFontSizeBy1px() {
     if (gMeme.selectedLineIdx === 2) --gMeme.lines[2].size
 }
 
-var gRandomMeme = {
+gRandomMeme = {
     id: getRandomIntInclusive(1, 18),
-    txt: makeLorem(3),
-    color: getRandomColor(),
+    txt: makeLorem(4),
+    color1: getRandomColor(),
+    color2: getRandomColor(),
     size: getRandomIntInclusive(30, 60)
 }
 
 function getRandomMeme() {
     return gRandomMeme
+}
+
+function setTextDrag(isDrag) {
+    gMeme.lines.isDrag = isDrag
+}
+function setTextPos(x, y) {
+    if (gMeme.selectedLineIdx === 0) {
+        gMeme.lines[0].pos.x = x
+        gMeme.lines[0].pos.y = y
+    } 
+    if (gMeme.selectedLineIdx === 1) {
+        gMeme.lines[1].pos.x = x
+        gMeme.lines[1].pos.y = y  
+    } 
+    if (gMeme.selectedLineIdx === 2) {
+        gMeme.lines[2].pos.x = x
+        gMeme.lines[2].pos.y = y
+    }
+}
+function moveText(dx, dy) {
+    if (gMeme.selectedLineIdx === 0) {
+        gMeme.lines[0].pos.x += dx
+        gMeme.lines[0].pos.y += dy
+    } 
+    if (gMeme.selectedLineIdx === 1) {
+        gMeme.lines[1].pos.x += dx
+        gMeme.lines[1].pos.y += dy  
+    } 
+    if (gMeme.selectedLineIdx === 2) {
+        gMeme.lines[2].pos.x += dx
+        gMeme.lines[2].pos.y += dy
+    }
 }
 
 function _saveImgsToStorage() {

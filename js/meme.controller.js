@@ -2,14 +2,27 @@
 
 var gElCanvas
 var gCtx
+var gStartPos
 
 function onInit() {
     renderGallery()
     gElCanvas = document.querySelector('#my-canvas')
     gCtx = gElCanvas.getContext('2d')
     addListeners()
+    renderCanvas()
+}
+function renderCanvas() {
+    gCtx.fillStyle = "white"
+    gCtx.fillRect(0, 0, gElCanvas.width, gElCanvas.height)
+    renderText()
 }
 
+function renderText() {
+    const meme = getMeme()
+    const line = meme.lines[0]
+    const { pos, txt } = line
+    drawText(txt, pos.x, pos.y)
+}
 
 function renderMeme() {
     const meme = getMeme()
@@ -19,17 +32,18 @@ function renderMeme() {
     // console.log(imgObj)
     const img = new Image()
     // console.log(img)
-    img.src = imgObj.url
-    img.onload = () => {
-        gCtx.drawImage(img, 0, 0, gElCanvas.width, gElCanvas.height)
+    if (imgObj !== undefined) {
+        img.src = imgObj.url
+        img.onload = () => {
+            gCtx.drawImage(img, 0, 0, gElCanvas.width, gElCanvas.height)
+        }
     }
 }
 
-function draw(txt, ev) {
-    ev.preventDefault()
-    const meme = getMeme()
+function draw() {
     const input = document.querySelector('[name=txt]')
-    setLineTxt(txt)
+    setLineTxt(input.value)
+    const meme = getMeme()
     switch (meme.selectedLineIdx) {
         case 0:
             drawText(meme.lines[0].txt, gElCanvas.width / 2, gElCanvas.height / 11)
@@ -48,11 +62,9 @@ function draw(txt, ev) {
 
 function drawText(txt, x, y) {
     const font = document.querySelector('[name=select-font]').value
-    // console.log(font)
     const fillStyle = document.querySelector('.fill-style').value
     const strokeStyle = document.querySelector('.stroke-style').value
     const meme = getMeme()
-
     gCtx.beginPath()
     gCtx.textBaseline = 'middle'
     // console.log(meme.lines[meme.selectedLineIdx].align)
@@ -65,18 +77,7 @@ function drawText(txt, x, y) {
     gCtx.strokeText(txt, x, y)
     gCtx.closePath()
     drawRect()
-    // drawRect1(50, 50)
 }
-
-// function drawRect1(x, y) {
-//     gCtx.beginPath();
-//     gCtx.rect(x, y, 200, 200);
-//     gCtx.fillStyle = 'green';
-//     gCtx.fillRect(x, y, 200, 200);
-//     gCtx.strokeStyle = 'red';
-//     gCtx.stroke();
-//     gCtx.closePath();
-// }
 
 function onToggleUpDown() {
     document.body.classList.toggle('updown-clicked')
@@ -158,56 +159,114 @@ function resizeCanvas() {
 }
 
 function addListeners() {
-    // addMouseListeners()
+    addMouseListeners()
     // addTouchListeners()
     window.addEventListener('resize', () => {
         resizeCanvas()
         renderMeme()
+        const center = { x: gElCanvas.width / 2, y: gElCanvas.height / 2 }
+        const meme = getMeme()
+        const line = meme.lines[0]
+        const { txt } = line
+        drawText(txt, center)
         drawRandomMeme()
+        renderCanvas()
     })
 }
 
+function addMouseListeners() {
+    gElCanvas.addEventListener('mousemove', onMove)
+    gElCanvas.addEventListener('mousedown', onDown)
+    gElCanvas.addEventListener('mouseup', onUp)
+}
+
+function onDown(ev) {
+    const meme = getMeme()
+    // Getting the clicked position
+    const pos = getEvPos(ev)
+    console.log(pos)
+    console.log(meme.lines[0])
+    // { x: 15, y : 15 }
+    if (!canvasClicked(ev)) return
+    setTextDrag(true)
+    gStartPos = pos
+    document.body.style.cursor = 'grabbing'
+}
+
+function onMove(ev) {
+    const meme = getMeme()
+    const line = meme.lines[0]
+    if (!line.isDrag) return
+    const pos = getEvPos(ev)
+    const dx = pos.x - gStartPos.x
+    const dy = pos.y - gStartPos.y
+    moveText(dx, dy)
+    gStartPos = pos
+    renderCanvas()
+}
+
+function onUp() {
+    setTextDrag(false)
+    document.body.style.cursor = 'grab'
+}
+
+function getEvPos(ev) {
+    var pos = {
+        x: ev.offsetX,
+        y: ev.offsetY
+    }
+    setTextPos(pos.x, pos.y)
+    return pos
+}
+
 function drawRect() {
-    console.log('rect')
+    // console.log('rect')
+    const input = document.querySelector('[name=txt]')
+    setLineTxt(input.value)
     const meme = getMeme()
     const linesSpace = gElCanvas.height / 1.1 - gElCanvas.height / 2
-    meme.lines.forEach((line, idx) => { 
-        const { color, size, txt } = line
+    meme.lines.forEach((line, idx) => {
+        const { color, size, txt, align } = line
         gCtx.strokeStyle = color
         line.y = (gElCanvas.height / 11 - (size / 2)) + (idx * (linesSpace))
-        line.x = txt.length * size / 4
-        // line.x = 0
-        // line.x = txt.length * size / 2
-        gCtx.strokeRect(line.x, line.y, (txt.length * size / 2) , size)
+        // console.log(gCtx.measureText(txt).width)
+        if (align === 'center') line.x = (gElCanvas.width - gCtx.measureText(txt).width) / 2
+        if (align === 'left') line.x = (gElCanvas.width / 2) - (gCtx.measureText(txt).width / 2)
+        // if (align === 'right') line.x = gElCanvas.width - (gCtx.measureText(txt).width / 2)
+        if (gCtx.measureText(txt).width === 0) return
+        gCtx.strokeRect(line.x, line.y, gCtx.measureText(txt).width, size)
+
     })
 }
 
 function canvasClicked(ev) {
     const meme = getMeme()
-    let clickedStar = null
+    let clickedText = null
     clickedText = meme.lines.find(line => {
-        return ev.offsetX >= line.x && ev.offsetX <= line.x + line.txt.length &&
-            ev.offsetY >= line.y && ev.offsetY <= line.y + line.size
+        return ev.offsetX >= line.x
+            && ev.offsetX <= line.x + (line.txt.length * line.size / 2)
+            && ev.offsetY >= line.y
+            && ev.offsetY <= line.y + line.size
     })
-    if(clickedStar) { 
+    if (clickedText) {
         console.log('!')
     }
 }
 
 function drawRandomMeme() {
-    // ev.preventDefault
     document.body.classList.toggle('editor-open')
     const flexible = getRandomMeme()
     const imgId = flexible.id
     const imgObj = getImg(imgId)
     const img = new Image()
-    // console.log(img)
+    console.log(img)
     img.src = imgObj.url
     img.onload = () => {
         gCtx.drawImage(img, 0, 0, gElCanvas.width, gElCanvas.height)
-    }
-    drawRandomText(gElCanvas.width / 2, gElCanvas.height / 2)
-
+        drawRandomText(gElCanvas.width / 2, gElCanvas.height / 2)
+        drawRandomText(gElCanvas.width / 2, gElCanvas.height / 11)
+        drawRandomText(gElCanvas.width / 2, gElCanvas.height / 1.1)
+    } 
 }
 
 function drawRandomText(x, y) {
@@ -219,9 +278,10 @@ function drawRandomText(x, y) {
     gCtx.font = `${flexible.txt}px impact`
     gCtx.fillStyle = `${flexible.color}`
     gCtx.fillText(`${flexible.txt}`, x, y)
-    gCtx.strokeStyle = `${flexible.color}`
+    gCtx.strokeStyle = `${flexible.color1}`
     gCtx.strokeText(`${flexible.txt}`, x, y)
-    // console.log(`${flexible.txt}`)
+    console.log(`${flexible.txt}`)
+    console.log(`${flexible.color2}`)
     gCtx.closePath()
 }
 
