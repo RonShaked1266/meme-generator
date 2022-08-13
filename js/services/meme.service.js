@@ -38,8 +38,18 @@ gMeme = {
         { pos: { x: 0, y: 0 }, txt: '', size: 50, align: 'center', color: 'white', isDrag: false }
     ]
 }
-console.log(gMeme.lines[0])
 
+gRandomMeme = {
+    id: getRandomIntInclusive(1, 18),
+    txt: makeLorem(4),
+    color1: getRandomColor(),
+    color2: getRandomColor(),
+    size: getRandomIntInclusive(30, 60)
+}
+
+function getRandomMeme() {
+    return gRandomMeme
+}
 
 function getMeme() {
     return gMeme
@@ -64,12 +74,12 @@ function getImgById(imgId) {
     return img
 }
 
-function setFilter(filterBy) {
-    gFilterBy = filterBy
-}
-
 function setImg(imgId) {
     if (imgId !== undefined) gMeme.selectedImgId = imgId
+}
+
+function setFilter(filterBy) {
+    gFilterBy = filterBy
 }
 
 function addLine() {
@@ -107,17 +117,7 @@ function decreaseFontSizeBy1px() {
     if (gMeme.selectedLineIdx === 2) --gMeme.lines[2].size
 }
 
-gRandomMeme = {
-    id: getRandomIntInclusive(1, 18),
-    txt: makeLorem(4),
-    color1: getRandomColor(),
-    color2: getRandomColor(),
-    size: getRandomIntInclusive(30, 60)
-}
-
-function getRandomMeme() {
-    return gRandomMeme
-}
+//
 
 function setTextDrag(isDrag) {
     gMeme.lines.isDrag = isDrag

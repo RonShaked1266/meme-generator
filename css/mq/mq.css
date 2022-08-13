@@ -11,6 +11,7 @@
         top: 66px;
         transform: translateX(100%);
         transition: transform .6s, box-shadow .6s;
+        z-index: 20;
     }
     body.menu-open .main-nav {
         pointer-events: auto;
@@ -29,11 +30,30 @@
         background-color: var(--clr1);
         font-size: 1.5em;
     } 
-    canvas {
-        margin-bottom: 20px;
+    .close-menu {
+        margin-inline: 10px;
+        display: none;
+        border: none;
+        color: var(--clr3);
+        background-color: var(--clr1);
+        font-size: 1.5em;
+        z-index: 20;   
+    }  
+    body.menu-open .toggle-menu {
+        display: none;   
+    }
+    body.menu-open .close-menu {
+        display: block;   
+    }
+    body.menu-open .main-screen {
+        opacity: 1;
+        pointer-events: auto;
     }
     .main-header .main-nav {
         position: absolute;
+    }
+    canvas {
+        margin-bottom: 20px;
     }
 }
 
