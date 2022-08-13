@@ -10,8 +10,8 @@ var gRandomMeme
 
 gImgs = [
     { id: 1, url: 'img/1.jpg', keywords: ['funny'] },
-    { id: 2, url: 'img/2.jpg', keywords: ['funny'] },
-    { id: 3, url: 'img/3.jpg', keywords: ['funny', 'baby'] },
+    { id: 2, url: 'img/2.jpg', keywords: ['cat'] },
+    { id: 3, url: 'img/3.jpg', keywords: ['funny', 'baby', 'cat'] },
     { id: 4, url: 'img/4.jpg', keywords: ['funny', 'cat'] },
     { id: 5, url: 'img/5.jpg', keywords: ['funny', 'baby'] },
     { id: 6, url: 'img/6.jpg', keywords: ['funny'] },
@@ -123,32 +123,12 @@ function setTextDrag(isDrag) {
     gMeme.lines.isDrag = isDrag
 }
 function setTextPos(x, y) {
-    if (gMeme.selectedLineIdx === 0) {
-        gMeme.lines[0].pos.x = x
-        gMeme.lines[0].pos.y = y
-    }
-    if (gMeme.selectedLineIdx === 1) {
-        gMeme.lines[1].pos.x = x
-        gMeme.lines[1].pos.y = y
-    }
-    if (gMeme.selectedLineIdx === 2) {
-        gMeme.lines[2].pos.x = x
-        gMeme.lines[2].pos.y = y
-    }
+    gMeme.lines[0].pos.x = x
+    gMeme.lines[0].pos.y = y
 }
 function moveText(dx, dy) {
-    if (gMeme.selectedLineIdx === 0) {
-        gMeme.lines[0].pos.x += dx
-        gMeme.lines[0].pos.y += dy
-    }
-    if (gMeme.selectedLineIdx === 1) {
-        gMeme.lines[1].pos.x += dx
-        gMeme.lines[1].pos.y += dy
-    }
-    if (gMeme.selectedLineIdx === 2) {
-        gMeme.lines[2].pos.x += dx
-        gMeme.lines[2].pos.y += dy
-    }
+    gMeme.lines[0].pos.x += dx
+    gMeme.lines[0].pos.y += dy
 }
 
 function _saveImgsToStorage() {

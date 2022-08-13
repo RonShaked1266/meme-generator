@@ -17,14 +17,23 @@ function renderCanvas() {
     gCtx.fillRect(0, 0, gElCanvas.width, gElCanvas.height)
     renderText()
 }
-
+//RENDER-TEXT&IMG
 function renderText() {
     const meme = getMeme()
     const line = meme.lines[0]
     const { pos, txt } = line
-    drawText(txt, pos.x, pos.y)
+    const imgId = meme.selectedImgId
+    const imgObj = getImg(imgId)
+    const img = new Image()
+    if (imgObj !== undefined) {
+        img.src = imgObj.url
+        img.onload = () => {
+            gCtx.drawImage(img, 0, 0, gElCanvas.width, gElCanvas.height)
+            drawText(txt, pos.x, pos.y)
+        }
+    }
 }
-
+// RENDER-IMG
 function renderMeme() {
     const meme = getMeme()
     const imgId = meme.selectedImgId
@@ -78,7 +87,7 @@ function drawText(txt, x, y) {
     gCtx.fillText(txt, x, y)
     gCtx.strokeText(txt, x, y)
     gCtx.closePath()
-    drawRect()
+    // drawRect()
 }
 
 function drawRect() {
@@ -101,15 +110,46 @@ function drawRect() {
     })
 }
 
+function isTextClicked(ev) {
+    const meme = getMeme()
+    let clickedText = meme.lines.find(line => {
+        return ev.offsetX >= line.x
+            && ev.offsetX <= line.x + (line.txt.length * line.size / 2)
+            && ev.offsetY >= line.y
+            && ev.offsetY <= line.y + line.size
+    })
+    if (clickedText) {
+        // console.log('!')
+    }
+}
+
+function drawRectLine() {
+    const meme = getMeme()
+    const linesSpace = gElCanvas.height / 1.1 - gElCanvas.height / 2
+    meme.lines.forEach((line, idx) => {
+        const { color, size, txt } = line
+        gCtx.strokeStyle = color
+        line.y = (gElCanvas.height / 11 - (size / 2)) + (idx * (linesSpace))
+        line.x = 0
+        if (gCtx.measureText(txt).width === 0 && idx === meme.selectedLineIdx) {
+            gCtx.strokeRect(line.x, line.y, gElCanvas.width, size)
+        }
+
+    })
+}
+
+
 //CONTROL-BOX
 function onToggleUpDown() {
     document.body.classList.toggle('updown-clicked')
     toggleUpDown()
+    drawRectLine()
 }
 
 function onAddLine() {
     document.body.classList.toggle('add-clicked')
     addLine()
+    drawRectLine()
 }
 
 function onTextAlign(align) {
@@ -139,20 +179,6 @@ function resizeCanvas() {
     gElCanvas.height = elContainer.offsetHeight
 }
 
-function canvasClicked(ev) {
-    const meme = getMeme()
-    let clickedText = null
-    clickedText = meme.lines.find(line => {
-        return ev.offsetX >= line.x
-            && ev.offsetX <= line.x + (line.txt.length * line.size / 2)
-            && ev.offsetY >= line.y
-            && ev.offsetY <= line.y + line.size
-    })
-    if (clickedText) {
-        // console.log('!')
-    }
-}
-
 //RANDOM-MEME
 function drawRandomMeme() {
     document.body.classList.toggle('editor-open')
@@ -160,14 +186,13 @@ function drawRandomMeme() {
     const imgId = flexible.id
     const imgObj = getImg(imgId)
     const img = new Image()
-    console.log(img)
     img.src = imgObj.url
     img.onload = () => {
         gCtx.drawImage(img, 0, 0, gElCanvas.width, gElCanvas.height)
         drawRandomText(gElCanvas.width / 2, gElCanvas.height / 2)
         drawRandomText(gElCanvas.width / 2, gElCanvas.height / 11)
         drawRandomText(gElCanvas.width / 2, gElCanvas.height / 1.1)
-    } 
+    }
 }
 
 function drawRandomText(x, y) {
@@ -176,10 +201,10 @@ function drawRandomText(x, y) {
     gCtx.textBaseline = 'middle'
     gCtx.textAlign = 'center'
     gCtx.lineWidth = 1
-    gCtx.font = `${flexible.txt}px impact`
-    gCtx.fillStyle = `${flexible.color}`
+    gCtx.font = `${flexible.size}px impact`
+    gCtx.fillStyle = `${flexible.color1}`
     gCtx.fillText(`${flexible.txt}`, x, y)
-    gCtx.strokeStyle = `${flexible.color1}`
+    gCtx.strokeStyle = `${flexible.color2}`
     gCtx.strokeText(`${flexible.txt}`, x, y)
     gCtx.closePath()
 }
@@ -190,13 +215,11 @@ function addListeners() {
     // addTouchListeners()
     window.addEventListener('resize', () => {
         resizeCanvas()
-        renderMeme()
         const center = { x: gElCanvas.width / 2, y: gElCanvas.height / 2 }
         const meme = getMeme()
         const line = meme.lines[0]
         const { txt } = line
         drawText(txt, center)
-        drawRandomMeme()
         renderCanvas()
     })
 }
@@ -213,7 +236,7 @@ function onDown(ev) {
     const pos = getEvPos(ev)
     console.log(pos)
     console.log(meme.lines[0])
-    if (!canvasClicked(ev)) return
+    if (!isTextClicked(ev)) return
     setTextDrag(true)
     gStartPos = pos
     document.body.style.cursor = 'grabbing'

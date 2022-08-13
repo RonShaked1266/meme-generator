@@ -50,7 +50,6 @@ canvas {
     border-radius: 4px;
 }
 
-
 /* .file-input {
     background-color: var(--clr3);
     width: 220px;
@@ -119,26 +118,26 @@ canvas {
 }
 
 body.updown-clicked .up-down:hover {
-    border: 2px solid var(--clr1);
+    border: 1px solid var(--clr1);
 }
 body.add-clicked .add:hover {
-    border: 2px solid var(--clr1);
+    border: 1px solid var(--clr1);
 }
 body.trash-clicked .trash:hover {
-    border: 2px solid var(--clr1);
+    border: 1px solid var(--clr1);
 }
 body.center .center:hover {
-    border: 2px solid var(--clr1);
+    border: 1px solid var(--clr1);
 }
 body.right .right:hover {
-    border: 2px solid var(--clr1);
+    border: 1px solid var(--clr1);
 }
 body.left .left:hover {
-    border: 2px solid var(--clr1);
+    border: 1px solid var(--clr1);
 }
 body.size-up-clicked .increase-font:hover {
-    border: 2px solid var(--clr1);
+    border: 1px solid var(--clr1);
 }
 body.size-down-clicked .decrease-font:hover {
-    border: 2px solid var(--clr1);
+    border: 1px solid var(--clr1);
 }
