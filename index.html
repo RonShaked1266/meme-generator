@@ -52,13 +52,13 @@
         <div class="editor-content full main-layout">
             <div class="main-content flex">
                 <!-- <input type="file" class="file-input" name="image" onchange="onImgInput(event)" /><br> -->
-                    <canvas id="my-canvas" height="550" width="550" onclick="isTextClicked(event)"></canvas>
+                    <canvas id="my-canvas" height="550" width="550" onclick="onTextClicked(event)"></canvas>
 
                 <div class="generator-container flex">
                     <div class="generator">
                         <input type="text" class="input-txt" placeholder="" name="txt" oninput="onSetLineTxt(this.value)" minlength="1"
                             maxlength="15"><br><br>
-                        <button class="up-down" onclick="onToggleUpDown(this)"><img src="icons/up-down.png"></button>
+                        <button class="up-down" onclick="onSwitchLines(this)"><img src="icons/up-down.png"></button>
                         <button class="add" onclick="onAddLine(this)"><img src="icons/add.png"></button>
                         <button class="trash" onclick="clearCanvas()"><img src="icons/trash.png"></button><br>
                         <button class="increase-font" onclick="onChangeFontSize(1)"><img
@@ -80,8 +80,8 @@
                             <option value="arial">Arial</option>
                         </select>
                         <br><br><button class="paint-board" onclick="onSetColor()"><img src="icons/paint-board.png"></button>
-                        <input type="color" class="fill-style" name="fill-style" onchange="onSetColor()"/>
-                        <input type="color" class="stroke-style" name="stroke-style" onchange="onSetColor()"/>
+                        <input type="color" class="fill-style" name="fill-style" oninput="onSetColor()"/>
+                        <input type="color" class="stroke-style" name="stroke-style" oninput="onSetColor()"/>
                         <section></section><br>
                         <a href="#" onclick="downloadCanvas(this)" download="cool-canvas" class="download">Download</a>
                         <button class="share" onclick="uploadImg()">Share</button>

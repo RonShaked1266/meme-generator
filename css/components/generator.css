@@ -29,8 +29,8 @@
 
 canvas {
     display: flex;
-    background-color: var(--clr2);
-    padding: 10px;
+    background-color: var(--clr3);
+    margin: 10px;
 }
 
 .generator .input-txt {

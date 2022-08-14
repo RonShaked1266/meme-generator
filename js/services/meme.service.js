@@ -45,9 +45,9 @@ gMeme = {
     selectedImgId: 0,
     selectedLineIdx: 0,
     lines: [
-        { pos: { x: 0, y: 0 }, txt: '', size: 50, align: 'center', color: 'white', isDrag: false },
-        { pos: { x: 0, y: 0 }, txt: '', size: 50, align: 'center', color: 'white', isDrag: false },
-        { pos: { x: 0, y: 0 }, txt: '', size: 50, align: 'center', color: 'white', isDrag: false }
+        { pos: { x: 0, y: 0 }, txt: '', size: 50, align: 'center', color: 'white', isDrag: false, height: 11 },
+        { pos: { x: 0, y: 0 }, txt: '', size: 50, align: 'center', color: 'white', isDrag: false, height: 2 },
+        { pos: { x: 0, y: 0 }, txt: '', size: 50, align: 'center', color: 'white', isDrag: false, height: 1.1 }
     ]
 }
 
@@ -67,7 +67,9 @@ function getMeme() {
     return gMeme
 }
 
-
+function getSelectedLine() {
+    return gMeme.lines[gMeme.selectedLineIdx]
+}
 
 function getImgsForDisplay() {
     if (gFilterBy === 'all') return gImgs
@@ -102,13 +104,15 @@ function addLine() {
 
 function setLineTxt(txt) {
     gMeme.lines[gMeme.selectedLineIdx].txt = txt
+    console.log(gMeme.lines[gMeme.selectedLineIdx].txt )
+    console.log(gMeme.lines[0].txt)
 }
 
-function toggleUpDown() {
+function switchLines() {
     ++gMeme.selectedLineIdx
-    
-   
+    if (gMeme.selectedLineIdx > gMeme.lines.length) gMeme.selectedLineIdx = 0
 }
+
 function toggleUpDown() {
     if (gMeme.selectedLineIdx === 0) gMeme.selectedLineIdx = 2
     else if (gMeme.selectedLineIdx === 2) gMeme.selectedLineIdx = 0
@@ -119,30 +123,25 @@ function textAlign(align) {
     gMeme.lines[gMeme.selectedLineIdx].align = align
 }
 
-
 function changeFontSize(diff) {
     gMeme.lines[gMeme.selectedLineIdx].size += diff
-}
-function increaseFontSizeBy1px() {
-    ++gMeme.lines[gMeme.selectedLineIdx].size
-}
-
-function decreaseFontSizeBy1px() {
-    --gMeme.lines[gMeme.selectedLineIdx].size
 }
 
 //
 
 function setTextDrag(isDrag) {
-    gMeme.lines[0].isDrag = isDrag
+    const line = getSelectedLine()
+    line.isDrag = isDrag
 }
 function setTextPos(x, y) {
-    gMeme.lines[0].pos.x = x
-    gMeme.lines[0].pos.y = y
+    const line = getSelectedLine()
+    line.pos.x = x
+    line.pos.y = y
 }
 function moveText(dx, dy) {
-    gMeme.lines[0].pos.x += dx
-    gMeme.lines[0].pos.y += dy
+    const line = getSelectedLine()
+    line.pos.x += dx
+    line.pos.y += dy
 }
 
 function _saveMemesToStorage() {
