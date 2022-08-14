@@ -70,9 +70,13 @@
                             <option value="david">David</option>
                             <option value="arial">Arial</option>
                         </select>
-                        <br><br><button class="paint-board" onclick="onSetColor()"><img src="icons/paint-board.png"></button>
+                        <!-- <br><br><button class="paint-board" onclick="onSetColor()"><img src="icons/paint-board.png"></button>
                         <input type="color" class="fill-style" name="fill-style" oninput="onSetColor()"/>
-                        <input type="color" class="stroke-style" name="stroke-style" oninput="onSetColor()"/>
+                        <input type="color" class="stroke-style" name="stroke-style" oninput="onSetColor()"/> -->
+                        <br><br><input type="color" id="fill-style" class="fill-style" oninput="onSetColor(this.value)" hidden>
+                        <button><label for="fill-style" class="fill-style" ><img src="icons/paint-board.png"></label></button>
+                        <input type="color" id="stroke-style" class="stroke-style" oninput="onSetColor(this.value)" hidden>
+                        <button><label for="stroke-style" class="stroke-style"><img src="icons/paint-board.png"></label></button>
                         <section></section><br>
                         <a href="#" onclick="downloadCanvas(this)" download="cool-canvas" class="download">Download</a>
                         <button class="share" onclick="uploadImg()">Share</button>

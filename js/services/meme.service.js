@@ -45,9 +45,9 @@ gMeme = {
     selectedImgId: 0,
     selectedLineIdx: 0,
     lines: [
-        { pos: { x: 0, y: 0 }, txt: '', size: 50, align: 'center', color: 'white', isDrag: false, height: 11 },
-        { pos: { x: 0, y: 0 }, txt: '', size: 50, align: 'center', color: 'white', isDrag: false, height: 2 },
-        { pos: { x: 0, y: 0 }, txt: '', size: 50, align: 'center', color: 'white', isDrag: false, height: 1.1 }
+        { pos: { x: 0, y: 0 }, txt: '', size: 50, align: 'center', color: 'white', isDrag: false, fillStyle: 'white',  strokeStyle: 'black', height: 11 },
+        { pos: { x: 0, y: 0 }, txt: '', size: 50, align: 'center', color: 'white', isDrag: false, fillStyle: 'white',  strokeStyle: 'black', height: 2 },
+        { pos: { x: 0, y: 0 }, txt: '', size: 50, align: 'center', color: 'white', isDrag: false, fillStyle: 'white',  strokeStyle: 'black', height: 1.1 }
     ]
 }
 
@@ -104,6 +104,11 @@ function addLine() {
 
 function setLineTxt(txt) {
     gMeme.lines[gMeme.selectedLineIdx].txt = txt
+}
+
+function setColor(color) {
+    gMeme.lines[gMeme.selectedLineIdx].fillStyle = color
+    gMeme.lines[gMeme.selectedLineIdx].strokeStyle = color
 }
 
 // function switchLines() {

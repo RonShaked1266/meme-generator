@@ -201,8 +201,9 @@ function onSetFont() {
     renderMeme()
 }
 
-function onSetColor() {
+function onSetColor(color) {
     document.body.classList.toggle('color-clicked')
+    setColor(color)
     renderMeme()
 }
 

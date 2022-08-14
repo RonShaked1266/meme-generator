@@ -79,30 +79,6 @@ canvas {
     padding: 10px;
 }
 
-.fill-style {
-    width: 55px;
-    height: 55px;
-    border: none;
-    border-radius: 10px;
-    background-color: var(--clr3);
-    background-image: url("icons/paint-board.png");
-    font-family: montserrat-bold, serif;
-    margin: 5px;
-    padding: 5px;
-}
-
-.stroke-style {
-    width: 55px;
-    height: 55px;
-    border: none;
-    border-radius: 10px;
-    background-color: var(--clr3);
-    /* background-image: url("../icons/paint-board.png"); */
-    font-family: montserrat-bold, serif;
-    margin: 5px;
-    padding: 5px;
-}
-
 .generator .select {
     border-radius: 4px;
     font-family: montserrat, serif;
