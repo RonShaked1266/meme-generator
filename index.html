@@ -76,17 +76,17 @@
                                 src="/icons/center-text-alignment.png"></button>
                         <button class="left" onclick="onTextAlign('left')"><img
                                 src="/icons/align-to-left.png"></button><br><br>
-                        <button class="text-stroke"><img src="/icons/text-stroke.png"></button>
-                        <select class="select" name="select-font">
+                        <button class="text-stroke" onclick="onSetFont()"><img src="/icons/text-stroke.png"></button>
+                        <select class="select" name="select-font" onchange="onSetFont()">
                             <option value="impact">Impact</option>
-                            <option value="montserrat">Montserrat</option>
+                            <option value="montserrat-bold">Montserrat</option>
                             <option value="eurof75">Eurof75</option>
                             <option value="david">David</option>
                             <option value="arial">Arial</option>
                         </select>
-                        <br><br><button class="paint-board"><img src="/icons/paint-board.png"></button>
-                        <input type="color" class="fill-style" name="fill-style" />
-                        <input type="color" class="stroke-style" name="stroke-style" />
+                        <br><br><button class="paint-board" onclick="onSetColor()"><img src="/icons/paint-board.png"></button>
+                        <input type="color" class="fill-style" name="fill-style" onchange="onSetColor()"/>
+                        <input type="color" class="stroke-style" name="stroke-style" onchange="onSetColor()"/>
                         <section></section><br>
                         <a href="#" onclick="downloadCanvas(this)" download="cool-canvas" class="download">Download</a>
                         <button class="share" onclick="uploadImg()">Share</button>

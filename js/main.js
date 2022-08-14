@@ -7,8 +7,8 @@ function toggleGallery() {
     document.body.classList.toggle('editor-open')
 }
 function toggleMemes() {
-    document.body.classList.toggle('editor-open')
     clearCanvas()
+    document.body.classList.toggle('editor-open')
 }
 
 

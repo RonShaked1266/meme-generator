@@ -45,6 +45,7 @@ function renderMeme() {
     if (imgObj !== undefined) {
         img.src = imgObj.url
         gCtx.drawImage(img, 0, 0, gElCanvas.width, gElCanvas.height)
+        drawRectLine()
     }
 }
 
@@ -78,12 +79,13 @@ function drawText(txt, x, y) {
     const meme = getMeme()
     gCtx.beginPath()
     gCtx.textBaseline = 'middle'
-    // console.log(meme.lines[meme.selectedLineIdx].align)
-    gCtx.textAlign = meme.lines[meme.selectedLineIdx].align
     gCtx.lineWidth = 1
-    gCtx.font = meme.lines[meme.selectedLineIdx].size + 'px ' + font
     gCtx.fillStyle = fillStyle
     gCtx.strokeStyle = strokeStyle
+    // gCtx.save()
+    // console.log(meme.lines[meme.selectedLineIdx].align)
+    gCtx.textAlign = meme.lines[meme.selectedLineIdx].align
+    gCtx.font = meme.lines[meme.selectedLineIdx].size + 'px ' + font
     gCtx.fillText(txt, x, y)
     gCtx.strokeText(txt, x, y)
     gCtx.closePath()
@@ -143,6 +145,9 @@ function onToggleUpDown() {
     document.body.classList.toggle('updown-clicked')
     toggleUpDown()
     drawRectLine()
+    clearCanvas()
+    renderMeme()
+    drawInLine() 
 }
 
 function onAddLine() {
@@ -154,17 +159,40 @@ function onAddLine() {
 function onTextAlign(align) {
     document.body.classList.toggle(align)
     textAlign(align)
+    clearCanvas()
+    renderMeme()
+    drawInLine() 
 }
 
 function onIncreaseFontSize() {
     document.body.classList.toggle('size-up-clicked')
     increaseFontSizeBy1px()
+    clearCanvas()
+    renderMeme()
+    drawInLine()
 }
 
 function onDecreaseFontSize() {
     document.body.classList.toggle('size-down-clicked')
     decreaseFontSizeBy1px()
+    clearCanvas()
+    renderMeme()
+    drawInLine()
 }
+function onSetFont() {
+    document.body.classList.toggle('font-clicked')
+    clearCanvas()
+    renderMeme()
+    drawInLine()
+}
+function onSetColor() {
+    document.body.classList.toggle('color-clicked')
+    clearCanvas()
+    renderMeme()
+    drawInLine()
+}
+
+
 
 function clearCanvas() {
     document.body.classList.toggle('trash-clicked')

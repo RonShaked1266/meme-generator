@@ -141,3 +141,9 @@ body.size-up-clicked .increase-font:hover {
 body.size-down-clicked .decrease-font:hover {
     border: 1px solid var(--clr1);
 }
+body.font-clicked .text-stroke:hover {
+    border: 1px solid var(--clr1);
+}
+body.color-clicked .paint-board:hover {
+    border: 1px solid var(--clr1);
+}
