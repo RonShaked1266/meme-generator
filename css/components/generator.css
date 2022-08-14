@@ -5,12 +5,12 @@
     padding-block: 30px;
 }
 
-.canvas-container {
+/* .canvas-container {
     background-color: var(--clr2);
     margin: 0 auto;
     width: 90vw;
     height:90vw;
-}
+} */
 
 .main-content {
     flex-direction: column;
@@ -29,7 +29,8 @@
 
 canvas {
     display: flex;
-    background-color: #fff;
+    background-color: var(--clr2);
+    padding: 10px;
 }
 
 .generator .input-txt {

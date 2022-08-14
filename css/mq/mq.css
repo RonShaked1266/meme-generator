@@ -78,12 +78,12 @@
     .search .search-input {
         margin-block: 2.5em;
     }
-    .canvas-container {
+    /* .canvas-container {
         width: 50%;
         height:50%;
         margin-inline-start: 10px;
         margin-inline-end: 120px;
-    }
+    } */
 }
 
 /* MEDIUM */
@@ -101,5 +101,6 @@
     }
     .generator-container {
         margin-block-start: 0;
+        margin-inline-start: 100px;
     }
 }

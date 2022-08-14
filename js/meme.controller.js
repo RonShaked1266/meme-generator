@@ -281,8 +281,6 @@ function onDown(ev) {
     console.log(pos)
     console.log(meme.lines[0])
     if (!isTextClicked(ev)) return
-    // gIsDrag = true
-    console.log(gIsDrag)
     setTextDrag(true)
     gStartPos = pos
     document.querySelector('#my-canvas').style.cursor = 'grabbing'

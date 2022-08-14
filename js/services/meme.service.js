@@ -69,6 +69,8 @@ function getMeme() {
     return gMeme
 }
 
+
+
 function getImgsForDisplay() {
     if (gFilterBy === 'all') return gImgs
     const imgs = gImgs.filter(img =>
