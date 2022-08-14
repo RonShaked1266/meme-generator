@@ -71,7 +71,7 @@ function drawInLine() {
 }
 
 function drawText(txt, x, y) {
-    clearCanvas()
+    clearLine()
     renderMeme()
     const font = document.querySelector('[name=select-font]').value
     const fillStyle = document.querySelector('.fill-style').value
@@ -145,7 +145,7 @@ function onToggleUpDown() {
     document.body.classList.toggle('updown-clicked')
     toggleUpDown()
     drawRectLine()
-    clearCanvas()
+    clearLine()
     renderMeme()
     drawInLine() 
 }
@@ -192,11 +192,28 @@ function onSetColor() {
     drawInLine()
 }
 
-
-
 function clearCanvas() {
     document.body.classList.toggle('trash-clicked')
     gCtx.clearRect(0, 0, gElCanvas.width, gElCanvas.height)
+    renderMeme()
+}
+
+function clearLine() {
+    document.body.classList.toggle('trash-clicked')
+    const meme = getMeme()
+    let idx
+    switch (meme.selectedLineIdx) {
+        case 0:
+           idx = 11
+            break;
+        case 2:
+            idx = 1.1
+            break;
+        case 1:
+            idx = 2
+            break;
+    }
+    gCtx.clearRect(0, 0, gElCanvas.width, gElCanvas.height / idx)
     renderMeme()
 }
 //
