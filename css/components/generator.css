@@ -15,6 +15,7 @@
 .main-content {
     flex-direction: column;
 }
+
 .main-content >* {
     justify-content: center;
     align-items: center; 
@@ -30,17 +31,6 @@ canvas {
     display: flex;
     background-color: #fff;
 }
-
-/* .contenteditable {
-    height: 1.2em;
-    width: 90vw;
-    position: absolute;
-    display: flex;
-    justify-content: center;
-    justify-self: center;
-    font-family: impact;
-    font-size: 30px;
-} */
 
 .generator .input-txt {
     font-family: impact, serif;
@@ -63,6 +53,7 @@ canvas {
     padding: 10px;
     text-align: center;
 } */
+
 .generator .share {
     background-color: var(--clr1);
     font-family: montserrat, serif;
@@ -73,6 +64,7 @@ canvas {
     padding: 5px;
     
 }
+
 .generator .download {
     background-color: var(--clr1);
     width: 65px;
@@ -97,6 +89,7 @@ canvas {
     margin: 5px;
     padding: 5px;
 }
+
 .stroke-style {
     width: 55px;
     height: 55px;

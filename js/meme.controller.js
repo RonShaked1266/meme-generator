@@ -71,7 +71,7 @@ function drawInLine() {
 }
 
 function drawText(txt, x, y) {
-    clearLine()
+    clearCanvas()
     renderMeme()
     const font = document.querySelector('[name=select-font]').value
     const fillStyle = document.querySelector('.fill-style').value
@@ -82,14 +82,14 @@ function drawText(txt, x, y) {
     gCtx.lineWidth = 1
     gCtx.fillStyle = fillStyle
     gCtx.strokeStyle = strokeStyle
-    // gCtx.save()
     // console.log(meme.lines[meme.selectedLineIdx].align)
     gCtx.textAlign = meme.lines[meme.selectedLineIdx].align
     gCtx.font = meme.lines[meme.selectedLineIdx].size + 'px ' + font
     gCtx.fillText(txt, x, y)
     gCtx.strokeText(txt, x, y)
     gCtx.closePath()
-    // drawRect()
+    drawRect()
+    gCtx.save()
 }
 
 function drawRect() {
@@ -144,10 +144,11 @@ function drawRectLine() {
 function onToggleUpDown() {
     document.body.classList.toggle('updown-clicked')
     toggleUpDown()
+    gCtx.restore()
     drawRectLine()
-    clearLine()
-    renderMeme()
-    drawInLine() 
+    // clearLine()
+    // renderMeme()
+    // drawInLine() 
 }
 
 function onAddLine() {
@@ -159,36 +160,26 @@ function onAddLine() {
 function onTextAlign(align) {
     document.body.classList.toggle(align)
     textAlign(align)
-    clearCanvas()
-    renderMeme()
     drawInLine() 
 }
 
 function onIncreaseFontSize() {
     document.body.classList.toggle('size-up-clicked')
     increaseFontSizeBy1px()
-    clearCanvas()
-    renderMeme()
     drawInLine()
 }
 
 function onDecreaseFontSize() {
     document.body.classList.toggle('size-down-clicked')
     decreaseFontSizeBy1px()
-    clearCanvas()
-    renderMeme()
     drawInLine()
 }
 function onSetFont() {
     document.body.classList.toggle('font-clicked')
-    clearCanvas()
-    renderMeme()
     drawInLine()
 }
 function onSetColor() {
     document.body.classList.toggle('color-clicked')
-    clearCanvas()
-    renderMeme()
     drawInLine()
 }
 

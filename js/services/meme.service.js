@@ -100,9 +100,7 @@ function addLine() {
 }
 
 function setLineTxt(txt) {
-    if (gMeme.selectedLineIdx === 0) gMeme.lines[0].txt = txt
-    if (gMeme.selectedLineIdx === 1) gMeme.lines[1].txt = txt
-    if (gMeme.selectedLineIdx === 2) gMeme.lines[2].txt = txt
+    gMeme.lines[gMeme.selectedLineIdx].txt = txt
 }
 
 function toggleUpDown() {
@@ -112,22 +110,15 @@ function toggleUpDown() {
 }
 
 function textAlign(align) {
-    if (gMeme.selectedLineIdx === 0) gMeme.lines[0].align = align
-    if (gMeme.selectedLineIdx === 1) gMeme.lines[1].align = align
-    if (gMeme.selectedLineIdx === 2) gMeme.lines[2].align = align
+    gMeme.lines[gMeme.selectedLineIdx].align = align
 }
 
 function increaseFontSizeBy1px() {
-    if (gMeme.selectedLineIdx === 0) ++gMeme.lines[0].size
-    if (gMeme.selectedLineIdx === 1) ++gMeme.lines[1].size
-    if (gMeme.selectedLineIdx === 2) ++gMeme.lines[2].size
-
+    ++gMeme.lines[gMeme.selectedLineIdx].size
 }
 
 function decreaseFontSizeBy1px() {
-    if (gMeme.selectedLineIdx === 0) --gMeme.lines[0].size
-    if (gMeme.selectedLineIdx === 1) --gMeme.lines[1].size
-    if (gMeme.selectedLineIdx === 2) --gMeme.lines[2].size
+    --gMeme.lines[gMeme.selectedLineIdx].size
 }
 
 //
