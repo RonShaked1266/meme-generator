@@ -85,7 +85,7 @@ canvas {
     border: none;
     border-radius: 10px;
     background-color: var(--clr3);
-    /* background-image: url("../icons/paint-board.png"); */
+    background-image: url("icons/paint-board.png");
     font-family: montserrat-bold, serif;
     margin: 5px;
     padding: 5px;

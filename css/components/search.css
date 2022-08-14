@@ -3,14 +3,14 @@
     padding-inline: 10px;
 }
 
-.search .search-input {
+/* .search .search-input {
     font-family: montserrat, serif;
     color: var(--clr6);
     font-size: 1em;
     padding: 0.2em;
-    margin-block: 0.5em;
     cursor: pointer;
-}
+    margin-block: 0.5em;
+} */
 
 .search .select {
     font-family: montserrat, serif;
@@ -18,6 +18,7 @@
     font-size: 1em;
     padding: 0.2em;
     cursor: pointer;
+    margin-block: 0.5em;
 }
 
 .search .flexible {

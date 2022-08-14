@@ -70,7 +70,7 @@ function getMeme() {
 function getSelectedLine() {
     return gMeme.lines[gMeme.selectedLineIdx]
 }
-
+console.log(gFilterBy)
 function getImgsForDisplay() {
     if (gFilterBy === 'all') return gImgs
     const imgs = gImgs.filter(img =>
@@ -104,20 +104,18 @@ function addLine() {
 
 function setLineTxt(txt) {
     gMeme.lines[gMeme.selectedLineIdx].txt = txt
-    console.log(gMeme.lines[gMeme.selectedLineIdx].txt )
-    console.log(gMeme.lines[0].txt)
 }
 
+// function switchLines() {
+//     ++gMeme.selectedLineIdx
+//     if (gMeme.selectedLineIdx > gMeme.lines.length) gMeme.selectedLineIdx = 0
+// }
 function switchLines() {
-    ++gMeme.selectedLineIdx
-    if (gMeme.selectedLineIdx > gMeme.lines.length) gMeme.selectedLineIdx = 0
-}
-
-function toggleUpDown() {
     if (gMeme.selectedLineIdx === 0) gMeme.selectedLineIdx = 2
     else if (gMeme.selectedLineIdx === 2) gMeme.selectedLineIdx = 0
     else if (gMeme.selectedLineIdx === 1) gMeme.selectedLineIdx = 2
 }
+
 
 function textAlign(align) {
     gMeme.lines[gMeme.selectedLineIdx].align = align

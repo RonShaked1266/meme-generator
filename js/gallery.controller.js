@@ -25,4 +25,6 @@ function onImgSelect(elImg) {
 function onSetFilterBy(filterBy) {
     setFilter(filterBy)
     renderGallery()
+    let input = document.querySelector('.select')
+    input.value = ''
 }

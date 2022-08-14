@@ -26,21 +26,12 @@
 
     <section class="gallery main-layout">
         <div class="search">
-            <!-- <input list="browsers" placeholder="Search...">
-            <datalist class="select" onchange="onSetFilterBy(this.value)" id="browsers">
-                <option value="all">
-                <option value="funny">
-                <option value="cat">
-                <option value="baby">
-            </datalist> -->
-            <input data-trans="search-placeholder" onchange="onSetFilterBy(this.value)" type="search"
-                class="search-input" placeholder="Search...">
-            <select class="select" onchange="onSetFilterBy(this.value)">
-                <option value="all">All</option>
-                <option value="funny">Funny</option>
-                <option value="cat">Cat</option>
-                <option value="baby">Baby</option>
-            </select>
+            <input class="select" list="filter-gallery" placeholder="Search..." onchange="onSetFilterBy(this.value)">
+            <datalist id="filter-gallery">
+                <option value="Funny">
+                <option value="Cat">
+                <option value="Baby">
+            </datalist>
             <button class="flexible" onclick="drawRandomMeme()">I'm flexible</button>
         </div>
         <div class="grid-container full main-layout">
@@ -60,7 +51,7 @@
                             maxlength="15"><br><br>
                         <button class="up-down" onclick="onSwitchLines(this)"><img src="icons/up-down.png"></button>
                         <button class="add" onclick="onAddLine(this)"><img src="icons/add.png"></button>
-                        <button class="trash" onclick="clearCanvas()"><img src="icons/trash.png"></button><br>
+                        <button class="trash" onclick="onClearLine()"><img src="icons/trash.png"></button><br>
                         <button class="increase-font" onclick="onChangeFontSize(1)"><img
                                 src="icons/increase-font.png"></button>
                         <button class="decrease-font" onclick="onChangeFontSize(-1)"><img
