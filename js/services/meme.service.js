@@ -2,12 +2,13 @@
 
 const STORAGE_KEY = 'memeDB'
 
+let gMeme
+let gImgs
+// let gKeywordSearchCountMap = { 'funny': 12, 'cat': 16, 'baby': 2 }
+let gFilterBy = 'all'
+let gRandomMeme
 
-var gMeme
-var gImgs
-// var gKeywordSearchCountMap = { 'funny': 12, 'cat': 16, 'baby': 2 }
-var gFilterBy = 'all'
-var gRandomMeme
+
 
 gImgs = [
     { id: 1, url: 'img/1.jpg', keywords: ['funny'] },
@@ -124,7 +125,7 @@ function decreaseFontSizeBy1px() {
 //
 
 function setTextDrag(isDrag) {
-    gMeme.lines.isDrag = isDrag
+    gMeme.lines[0].isDrag = isDrag
 }
 function setTextPos(x, y) {
     gMeme.lines[0].pos.x = x

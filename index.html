@@ -52,14 +52,14 @@
         <div class="editor-content full main-layout">
             <div class="main-content flex">
                 <!-- <input type="file" class="file-input" name="image" onchange="onImgInput(event)" /><br> -->
-                <div class="canvas-container">
+                <!-- <div class="canvas-container"> -->
                     <canvas id="my-canvas" height="550" width="550" onclick="isTextClicked(event)">
                     </canvas>
-                </div>
+                <!-- </div> -->
 
                 <div class="generator-container flex">
                     <div class="generator">
-                        <input type="text" class="input-txt" placeholder="" name="txt" oninput="drawInLine()" minlength="1"
+                        <input type="text" class="input-txt" placeholder="" name="txt" oninput="onSetLineTxt(this.value)" minlength="1"
                             maxlength="15"><br><br>
                         <button class="up-down" onclick="onToggleUpDown(this)"><img src="/icons/up-down.png"></button>
                         <button class="add" onclick="onAddLine(this)"><img src="/icons/add.png"></button>
