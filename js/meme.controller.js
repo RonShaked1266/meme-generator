@@ -87,9 +87,8 @@ function drawText(txt, x, y) {
     gCtx.font = meme.lines[meme.selectedLineIdx].size + 'px ' + font
     gCtx.fillText(txt, x, y)
     gCtx.strokeText(txt, x, y)
+    // drawRect()
     gCtx.closePath()
-    drawRect()
-    gCtx.save()
 }
 
 function drawRect() {
@@ -144,17 +143,16 @@ function drawRectLine() {
 function onToggleUpDown() {
     document.body.classList.toggle('updown-clicked')
     toggleUpDown()
-    gCtx.restore()
-    drawRectLine()
-    // clearLine()
-    // renderMeme()
-    // drawInLine() 
+    drawRectLine() 
+    drawInLine()
+
 }
 
 function onAddLine() {
     document.body.classList.toggle('add-clicked')
     addLine()
     drawRectLine()
+    drawInLine()
 }
 
 function onTextAlign(align) {
@@ -174,10 +172,12 @@ function onDecreaseFontSize() {
     decreaseFontSizeBy1px()
     drawInLine()
 }
+
 function onSetFont() {
     document.body.classList.toggle('font-clicked')
     drawInLine()
 }
+
 function onSetColor() {
     document.body.classList.toggle('color-clicked')
     drawInLine()
