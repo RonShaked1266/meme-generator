@@ -8,8 +8,6 @@ let gImgs
 let gFilterBy = 'all'
 let gRandomMeme
 
-
-
 gImgs = [
     { id: 1, url: 'img/1.jpg', keywords: ['funny'] },
     { id: 2, url: 'img/2.jpg', keywords: ['cat'] },
@@ -107,6 +105,11 @@ function setLineTxt(txt) {
 }
 
 function toggleUpDown() {
+    ++gMeme.selectedLineIdx
+    
+   
+}
+function toggleUpDown() {
     if (gMeme.selectedLineIdx === 0) gMeme.selectedLineIdx = 2
     else if (gMeme.selectedLineIdx === 2) gMeme.selectedLineIdx = 0
     else if (gMeme.selectedLineIdx === 1) gMeme.selectedLineIdx = 2
@@ -116,6 +119,10 @@ function textAlign(align) {
     gMeme.lines[gMeme.selectedLineIdx].align = align
 }
 
+
+function changeFontSize(diff) {
+    gMeme.lines[gMeme.selectedLineIdx].size += diff
+}
 function increaseFontSizeBy1px() {
     ++gMeme.lines[gMeme.selectedLineIdx].size
 }

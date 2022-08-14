@@ -47,13 +47,14 @@ function renderMeme() {
         img.src = imgObj.url
         gCtx.drawImage(img, 0, 0, gElCanvas.width, gElCanvas.height)
         drawRectLine()
+        drawInLine()
+
     }
 }
 function onSetLineTxt(txt) {
     setLineTxt(txt)
     console.log(txt)
     renderMeme()
-    drawInLine()
 }
 
 //DRAW-TEXT/RECT
@@ -78,8 +79,8 @@ function drawInLine() {
 }
 
 function drawText(txt, x, y) {
-    clearCanvas()
-    renderMeme()
+    // clearCanvas()
+    // renderMeme()
     const font = document.querySelector('[name=select-font]').value
     const fillStyle = document.querySelector('.fill-style').value
     const strokeStyle = document.querySelector('.stroke-style').value
@@ -94,7 +95,7 @@ function drawText(txt, x, y) {
     gCtx.font = meme.lines[meme.selectedLineIdx].size + 'px ' + font
     gCtx.fillText(txt, x, y)
     gCtx.strokeText(txt, x, y)
-    // drawRect()
+    drawRect()
     gCtx.closePath()
 }
 
@@ -169,6 +170,11 @@ function onTextAlign(align) {
     drawInLine()
 }
 
+function onChangeFontSize(diff) {
+    document.body.classList.toggle('size-up-clicked')
+    changeFontSize(diff)
+    drawInLine()
+}
 function onIncreaseFontSize() {
     document.body.classList.toggle('size-up-clicked')
     increaseFontSizeBy1px()

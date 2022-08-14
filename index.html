@@ -52,29 +52,26 @@
         <div class="editor-content full main-layout">
             <div class="main-content flex">
                 <!-- <input type="file" class="file-input" name="image" onchange="onImgInput(event)" /><br> -->
-                <!-- <div class="canvas-container"> -->
-                    <canvas id="my-canvas" height="550" width="550" onclick="isTextClicked(event)">
-                    </canvas>
-                <!-- </div> -->
+                    <canvas id="my-canvas" height="550" width="550" onclick="isTextClicked(event)"></canvas>
 
                 <div class="generator-container flex">
                     <div class="generator">
                         <input type="text" class="input-txt" placeholder="" name="txt" oninput="onSetLineTxt(this.value)" minlength="1"
                             maxlength="15"><br><br>
-                        <button class="up-down" onclick="onToggleUpDown(this)"><img src="/icons/up-down.png"></button>
-                        <button class="add" onclick="onAddLine(this)"><img src="/icons/add.png"></button>
-                        <button class="trash" onclick="clearCanvas()"><img src="/icons/trash.png"></button><br>
-                        <button class="increase-font" onclick="onIncreaseFontSize()"><img
-                                src="/icons/increase-font.png"></button>
-                        <button class="decrease-font" onclick="onDecreaseFontSize()"><img
-                                src="/icons/decrease-font.png"></button>
+                        <button class="up-down" onclick="onToggleUpDown(this)"><img src="icons/up-down.png"></button>
+                        <button class="add" onclick="onAddLine(this)"><img src="icons/add.png"></button>
+                        <button class="trash" onclick="clearCanvas()"><img src="icons/trash.png"></button><br>
+                        <button class="increase-font" onclick="onChangeFontSize(1)"><img
+                                src="icons/increase-font.png"></button>
+                        <button class="decrease-font" onclick="onChangeFontSize(-1)"><img
+                                src="icons/decrease-font.png"></button>
                         <button class="right" onclick="onTextAlign('right')"><img
-                                src="/icons/align-to-right.png"></button>
+                                src="icons/align-to-right.png"></button>
                         <button class="center" onclick="onTextAlign('center')"><img
-                                src="/icons/center-text-alignment.png"></button>
+                                src="icons/center-text-alignment.png"></button>
                         <button class="left" onclick="onTextAlign('left')"><img
-                                src="/icons/align-to-left.png"></button><br><br>
-                        <button class="text-stroke" onclick="onSetFont()"><img src="/icons/text-stroke.png"></button>
+                                src="icons/align-to-left.png"></button><br><br>
+                        <button class="text-stroke" onclick="onSetFont()"><img src="icons/text-stroke.png"></button>
                         <select class="select" name="select-font" onchange="onSetFont()">
                             <option value="impact">Impact</option>
                             <option value="montserrat-bold">Montserrat</option>
@@ -82,7 +79,7 @@
                             <option value="david">David</option>
                             <option value="arial">Arial</option>
                         </select>
-                        <br><br><button class="paint-board" onclick="onSetColor()"><img src="/icons/paint-board.png"></button>
+                        <br><br><button class="paint-board" onclick="onSetColor()"><img src="icons/paint-board.png"></button>
                         <input type="color" class="fill-style" name="fill-style" onchange="onSetColor()"/>
                         <input type="color" class="stroke-style" name="stroke-style" onchange="onSetColor()"/>
                         <section></section><br>
