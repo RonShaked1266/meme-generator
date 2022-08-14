@@ -5,13 +5,6 @@
     padding-block: 30px;
 }
 
-/* .canvas-container {
-    background-color: var(--clr2);
-    margin: 0 auto;
-    width: 90vw;
-    height:90vw;
-} */
-
 .main-content {
     flex-direction: column;
 }
@@ -62,8 +55,7 @@ canvas {
     width: 65px;
     height: 42px;
     margin: 5px;
-    padding: 5px;
-    
+    padding: 6px;   
 }
 
 .generator .download {
@@ -76,15 +68,15 @@ canvas {
     font-family: montserrat, serif;
     font-size: 1em;
     margin: 5px;
-    padding: 10px;
+    padding: 9px;
 }
 
 .generator .select {
     border-radius: 4px;
     font-family: montserrat, serif;
     color: var(--clr6);
-    font-size: 1em;
-    padding: 0.2em;
+    font-size: 1.1em;
+    padding: 0.4em;
 }
 
 body.updown-clicked .up-down:hover {

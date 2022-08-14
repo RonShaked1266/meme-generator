@@ -71,16 +71,14 @@
     }
     .search {
         min-height: 92px;
+        
     }
     .search .search-input {
         margin-block: 2.5em;
     }
-    /* .canvas-container {
-        width: 50%;
-        height:50%;
-        margin-inline-start: 10px;
-        margin-inline-end: 120px;
-    } */
+    .search .select {
+        margin-block: 2.5em;
+    }
 }
 
 /* MEDIUM */
@@ -98,6 +96,10 @@
     }
     .generator-container {
         margin-block-start: 0;
-        margin-inline-start: 80px;
+        margin-inline-start: 120px;
+    }
+    .main-content {
+        justify-content: center;
+        align-items: center;
     }
 }
