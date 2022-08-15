@@ -2,7 +2,7 @@
     background-color: var(--clr2);
     min-height: 75vh;
     /* min-height: 600px; */
-    padding-block: 30px;
+    padding-block: 10px;
 }
 
 .main-content {
@@ -17,7 +17,7 @@
 .generator-container {
     flex-direction: column;
     text-align: center;
-    margin-block-start: 20px;
+    margin-block-start: 10px;
 }
 
 canvas {
