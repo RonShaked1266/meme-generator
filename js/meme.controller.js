@@ -304,7 +304,7 @@ function drawRandomMeme() {
     img.src = imgObj.url
     img.onload = () => {
         gCtx.drawImage(img, 0, 0, gElCanvas.width, gElCanvas.height)
-        drawRandomText(gElCanvas.width / 2, gElCanvas.height / 2)
+        // drawRandomText(gElCanvas.width / 2, gElCanvas.height / 2)
         drawRandomText(gElCanvas.width / 2, gElCanvas.height / 11)
         drawRandomText(gElCanvas.width / 2, gElCanvas.height / 1.1)
     }
